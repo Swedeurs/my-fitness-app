@@ -2,12 +2,13 @@ import { pgTable, serial, integer, text } from 'drizzle-orm/pg-core';
 
 // User Table
 export const users = pgTable('users', {
-  userId: serial('user_id').primaryKey(), // Use `serial` for auto-increment fields
+  userId: serial('user_id').primaryKey(), 
   age: integer('age'),
   weight: integer('weight'),
   height: integer('height'),
   fitnessLevel: text('fitness_level'),
   dietaryPreferences: text('dietary_preferences'),
+  trainingPreferences: text('training_preferences'), 
 });
 
 // Gym Table
