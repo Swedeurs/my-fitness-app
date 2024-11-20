@@ -1,8 +1,9 @@
-// src/pages/api/users/workout-plan.ts
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextApiRequest, NextApiResponse } from 'next';
-import { generateWorkoutPlan } from '../../../services/generateWorkoutPlan';
+
 import { db } from '../../../lib/db';
 import { workouts } from '../../../lib/schema';
+import { generateWorkoutPlan } from '@/services/generate-workout-plan';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
