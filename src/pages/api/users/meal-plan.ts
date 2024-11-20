@@ -1,4 +1,5 @@
-// src/pages/api/users/meal-plan.ts
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../../lib/db';
 import { mealPlans } from '../../../lib/schema';
