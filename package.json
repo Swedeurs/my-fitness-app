@@ -15,22 +15,25 @@
     "drizzle-orm": "^0.36.3",
     "next": "15.0.3",
     "pg": "^8.13.1",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.2",
     "zod": "^3.23.8"
   },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/pg": "^8.11.10",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "drizzle-kit": "^0.28.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5"
-  }
+
+"devDependencies": {
+  "@types/node": "^20",
+  "@types/pg": "^8.11.10",
+  "@types/react": "^18",
+  "@types/react-dom": "^18",
+  "daisyui": "^4.12.14",
+  "drizzle-kit": "^0.28.0",
+  "eslint": "^8",
+  "eslint-config-next": "15.0.3",
+  "postcss": "^8",
+  "prettier": "^3.3.3",
+  "tailwindcss": "^3.4.1",
+  "tsx": "^4.19.2",
+  "typescript": "^5"
+}
 }
