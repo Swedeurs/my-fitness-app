@@ -12,7 +12,7 @@ type User = {
 
 type UserContextType = {
   user: User | null;
-  login: (credentials: User) => void;
+  login: (userData: User) => void;
   logout: () => void;
 };
 
@@ -22,15 +22,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    // Load user data from local storage or an API call
     const userData = localStorage.getItem('user');
     if (userData) {
       setUser(JSON.parse(userData));
     }
   }, []);
 
-  const login = (credentials: User) => {
-    setUser(credentials);
-    localStorage.setItem('user', JSON.stringify(credentials));
+  const login = (userData: User) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const logout = () => {
