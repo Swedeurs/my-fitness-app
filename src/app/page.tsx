@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,8 +6,12 @@ export default function Home() {
       <h1>Welcome to My Fitness App</h1>
       <nav>
         <ul>
-          <li><Link href="/signup">Sign Up</Link></li>
-          <li><Link href="/dashboard">Dashboard</Link></li>
+          <li>
+            <Link href="/signup">Sign Up</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
         </ul>
       </nav>
     </div>

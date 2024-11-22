@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from "next";
 
-import { db } from '../../../lib/db';
-import { workouts } from '../../../lib/schema';
-import { generateWorkoutPlan } from '@/services/generate-workout-plan';
+import { db } from "../../../lib/db";
+import { workouts } from "../../../lib/schema";
+import { generateWorkoutPlan } from "@/services/generate-workout-plan";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  if (req.method === "POST") {
     try {
       const userPreferences = req.body;
 
@@ -22,12 +25,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Insert data into the workouts table
       await db.insert(workouts).values(insertData).execute();
 
-      res.status(201).json({ message: 'Workout plan created successfully' });
+      res.status(201).json({ message: "Workout plan created successfully" });
     } catch (error) {
-      res.status(500).json({ error: 'Error generating workout plan' });
+      res.status(500).json({ error: "Error generating workout plan" });
     }
   } else {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

@@ -1,6 +1,5 @@
 import UserInputForm from "@/app/components/forms/user-inputform";
 
-
 export default function SignUp() {
   return (
     <div>
