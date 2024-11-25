@@ -4,6 +4,7 @@ type User = {
   id: number;
   name: string;
   email: string;
+  role: "client" | "trainer";
   fitnessLevel?: string;
   trainingPreferences?: string;
   dietaryPreferences?: string;
@@ -22,7 +23,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Load user data from local storage or an API call
     const userData = localStorage.getItem("user");
     if (userData) {
       setUser(JSON.parse(userData));

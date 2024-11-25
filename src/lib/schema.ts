@@ -1,4 +1,4 @@
-import { pgTable, serial, integer, text } from "drizzle-orm/pg-core";
+import { pgTable, serial, integer, text, timestamp, foreignKey } from "drizzle-orm/pg-core";
 
 // User Table
 export const users = pgTable("users", {
@@ -11,24 +11,11 @@ export const users = pgTable("users", {
   trainingPreferences: text("training_preferences"),
 });
 
-// Gym Table
-export const gyms = pgTable("gyms", {
-  gymId: serial("gym_id").primaryKey(),
-  name: text("name"),
-  location: text("location"),
-  membershipPrice: integer("membership_price"),
-});
-
-// Meal Plan Table
-export const mealPlans = pgTable("meal_plans", {
-  mealId: serial("meal_id").primaryKey(),
-  mealName: text("meal_name"),
-  ingredients: text("ingredients"),
-});
-
-// Workout Plan Table
-export const workouts = pgTable("workouts", {
-  workoutId: serial("workout_id").primaryKey(),
-  workoutName: text("workout_name"),
-  workoutType: text("workout_type"),
+// Sessions Table
+export const sessions = pgTable("sessions", {
+  sessionId: serial("session_id").primaryKey(),
+  trainerId: integer("trainer_id").notNull().references(() => users.userId),
+  clientId: integer("client_id").references(() => users.userId),
+  sessionTime: timestamp("session_time").notNull(),
+  status: text("status").notNull(), // 'booked', 'available', 'cancelled'
 });

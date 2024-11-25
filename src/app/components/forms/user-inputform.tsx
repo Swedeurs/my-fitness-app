@@ -1,4 +1,6 @@
+import { useUser } from "@/hooks/use-user";
 import { useForm } from "react-hook-form";
+
 
 type UserPreferencesForm = {
   fitnessLevel: string;
@@ -7,18 +9,20 @@ type UserPreferencesForm = {
   timeAvailability: number;
 };
 
-const UserInputForm = () => {
+const UserInputForm = ({ userRole }: { userRole: "client" | "trainer" }) => {
   const { register, handleSubmit } = useForm<UserPreferencesForm>();
+  const { login } = useUser();
 
   const onSubmit = async (data: UserPreferencesForm) => {
-    await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
+    // Mock login - pretend the user was successfully created
+    const user = {
+      id: 1, // Mocked ID
+      name: userRole === "client" ? "Client User" : "Trainer User",
+      email: `${userRole}@example.com`,
+      role: userRole,
+      ...data,
+    };
+    login(user);
     window.location.href = "/dashboard";
   };
 
@@ -30,7 +34,6 @@ const UserInputForm = () => {
         <option value="intermediate">Intermediate</option>
         <option value="advanced">Advanced</option>
       </select>
-
       <label>Training Preferences:</label>
       <select {...register("trainingPreferences")}>
         <option value="gym">Gym</option>
@@ -38,7 +41,6 @@ const UserInputForm = () => {
         <option value="running">Running</option>
         <option value="swimming">Swimming</option>
       </select>
-
       <label>Dietary Preferences:</label>
       <select {...register("dietaryPreferences")}>
         <option value="vegetarian">Vegetarian</option>
@@ -46,7 +48,6 @@ const UserInputForm = () => {
         <option value="low-carb">Low Carb</option>
         <option value="high-carb">High Carb</option>
       </select>
-
       <label>Time Availability (hours per week):</label>
       <input
         type="number"
@@ -54,7 +55,6 @@ const UserInputForm = () => {
         min="1"
         max="168"
       />
-
       <button type="submit">Save Preferences</button>
     </form>
   );
