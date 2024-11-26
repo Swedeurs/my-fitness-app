@@ -1,0 +1,23 @@
+import Link from "next/link";
+
+export function SideNav() {
+  return (
+    <aside style={{ width: '16rem', backgroundColor: '#000000', color: '#00ff66', padding: '1.5rem' }}>
+      <h2 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '2.5rem' }}>Dashboard</h2>
+      <nav style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Link href="/dashboard" style={{ color: '#00ff66', textDecoration: 'none', transition: 'color 0.3s' }}>
+          Home
+        </Link>
+        <Link href="/meal-plan" style={{ color: '#00ff66', textDecoration: 'none', transition: 'color 0.3s' }}>
+          Meal Plan
+        </Link>
+        <Link href="/workout-plan" style={{ color: '#00ff66', textDecoration: 'none', transition: 'color 0.3s' }}>
+          Workout Plan
+        </Link>
+        <Link href="/chat" style={{ color: '#00ff66', textDecoration: 'none', transition: 'color 0.3s' }}>
+          Chat with Trainer
+        </Link>
+      </nav>
+    </aside>
+  );
+}
