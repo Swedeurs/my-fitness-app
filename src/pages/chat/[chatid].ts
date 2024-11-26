@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { chatMessagesTable } from "@/lib/schema";
 import { eq, or } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { chatId } = req.query;
 
   if (req.method !== "GET") {
@@ -18,21 +21,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-
     const [userId1, userId2] = chatId.split("-").map(Number);
     if (!userId1 || !userId2) {
       res.status(400).json({ error: "Invalid chat ID format" });
       return;
     }
 
-
     const messages = await db
       .select()
       .from(chatMessagesTable)
-      .where(or(
-        eq(chatMessagesTable.senderId, userId1),
-        eq(chatMessagesTable.receiverId, userId2)
-      ));
+      .where(
+        or(
+          eq(chatMessagesTable.senderId, userId1),
+          eq(chatMessagesTable.receiverId, userId2),
+        ),
+      );
 
     res.status(200).json(messages);
   } catch (error) {

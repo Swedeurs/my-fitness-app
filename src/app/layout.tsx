@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-import "../styles/global.css"
+import "../styles/global.css";
 
 export default function RootLayout({
   children,
@@ -13,9 +13,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>My Fitness App</title>
       </head>
-      <body style={{ margin: 0, padding: 0 }}>
-        {children}
-      </body>
+      <body style={{ margin: 0, padding: 0 }}>{children}</body>
     </html>
   );
 }

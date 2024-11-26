@@ -16,7 +16,6 @@ export default function Chat({ otherUserId }: { otherUserId: number }) {
         const chatId = `${user.id}-${otherUserId}`;
         const response = await fetch(`/api/chat/${chatId}`);
 
-
         if (!response.ok) {
           console.error(`Response error, status: ${response.status}`);
           setError(`Unexpected response status: ${response.status}`);
@@ -88,11 +87,15 @@ export default function Chat({ otherUserId }: { otherUserId: number }) {
   return (
     <div className="max-w-3xl mx-auto border rounded-md shadow-md p-4 flex flex-col justify-between h-[36rem]">
       {error && <div className="text-red-500 mb-4">{error}</div>}
-      
 
-      <div className="overflow-y-auto mb-4 flex flex-col space-y-2" style={{ height: '80%' }}>
+      <div
+        className="overflow-y-auto mb-4 flex flex-col space-y-2"
+        style={{ height: "80%" }}
+      >
         {messages.length === 0 ? (
-          <p className="text-center text-gray-400">No messages yet. Start the conversation!</p>
+          <p className="text-center text-gray-400">
+            No messages yet. Start the conversation!
+          </p>
         ) : (
           messages.map((msg, index) => (
             <div
@@ -109,32 +112,32 @@ export default function Chat({ otherUserId }: { otherUserId: number }) {
         )}
       </div>
 
-      <div className="flex space-x-2" style={{ height: '10%' }}>
+      <div className="flex space-x-2" style={{ height: "10%" }}>
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           style={{
             flexGrow: 1,
-            border: '1px solid #4CAF50',
-            borderRadius: '0.375rem',
-            padding: '0.5rem',
-            color: '#e0e0e0',
-            backgroundColor: '#1a1a1a',
-            outline: 'none',
+            border: "1px solid #4CAF50",
+            borderRadius: "0.375rem",
+            padding: "0.5rem",
+            color: "#e0e0e0",
+            backgroundColor: "#1a1a1a",
+            outline: "none",
           }}
           placeholder="Type your message..."
         />
         <button
           onClick={sendMessage}
           style={{
-            padding: '0.5rem 1rem',
-            border: 'none',
-            backgroundColor: '#00ff66',
-            color: '#000',
-            borderRadius: '0.375rem',
-            transition: 'background-color 0.3s',
-            cursor: 'pointer',
+            padding: "0.5rem 1rem",
+            border: "none",
+            backgroundColor: "#00ff66",
+            color: "#000",
+            borderRadius: "0.375rem",
+            transition: "background-color 0.3s",
+            cursor: "pointer",
           }}
         >
           Send
