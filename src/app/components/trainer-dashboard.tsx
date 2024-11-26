@@ -26,6 +26,9 @@ export default function TrainerDashboard() {
       const fetchClients = async () => {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
+          if (!response.ok) {
+            throw new Error(`Trainer not found or error fetching trainer. Status: ${response.status}`);
+          }
           const data = await response.json();
           setClients(data);
         } catch (error) {

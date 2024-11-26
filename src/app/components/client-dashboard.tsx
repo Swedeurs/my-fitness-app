@@ -9,26 +9,24 @@ export default function ClientDashboard() {
   const [showChat, setShowChat] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [loading, setLoading] = useState<boolean>(true);
+  /* const [loading, setLoading] = useState<boolean>(true); */
 
   useEffect(() => {
     if (user) {
       const fetchTrainer = async () => {
-        setLoading(true);
         try {
           const response = await fetch(`/api/clients/${user.id}/trainer`);
           if (!response.ok) {
-            throw new Error("Failed to fetch trainer");
+            throw new Error(`Trainer not found or error fetching trainer. Status: ${response.status}`);
           }
           const data = await response.json();
           setTrainer(data);
         } catch (error) {
           console.error("Failed to fetch trainer:", error);
-          setError("An unexpected error occurred. Please try again later.");
-        } finally {
-          setLoading(false);
+          setError("No trainer assigned or an unexpected error occurred.");
         }
       };
+      
   
       fetchTrainer();
     }
