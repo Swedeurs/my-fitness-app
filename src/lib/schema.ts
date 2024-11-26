@@ -2,16 +2,19 @@ import { pgTable, varchar, integer, timestamp, text } from "drizzle-orm/pg-core"
 
 // User Table
 export const usersTable = pgTable("users", {
-  id: integer("user_id").primaryKey().generatedAlwaysAsIdentity(), 
-  name: varchar("name", { length: 255 }).notNull(), 
+  id: integer("user_id").primaryKey().generatedAlwaysAsIdentity(),
+  name: varchar("name", { length: 255 }).notNull(),
   age: integer("age").notNull(),
   email: varchar("email", { length: 255 }).notNull().unique(),
+  role: text("role").notNull(),
   weight: integer("weight"),
   height: integer("height"),
   fitnessLevel: text("fitness_level"),
   dietaryPreferences: text("dietary_preferences"),
   trainingPreferences: text("training_preferences"),
 });
+
+
 
 // Sessions Table
 export const sessionsTable = pgTable("sessions", {
