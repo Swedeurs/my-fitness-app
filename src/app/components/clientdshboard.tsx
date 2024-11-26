@@ -1,42 +1,52 @@
 import { useEffect, useState } from "react";
+import { useUser } from "@/hooks/use-user";
+import Chat from "./chat";
+import { Trainer } from "@/types";
+
 
 export default function ClientDashboard() {
-  const [sessions, setSessions] = useState([]);
+  const { user } = useUser();
+  const [trainer, setTrainer] = useState<Trainer | null>(null);
+  const [showChat, setShowChat] = useState<boolean>(false);
 
   useEffect(() => {
-    // Fetch sessions
-    fetch("/api/sessions")
-      .then((res) => res.json())
-      .then((data) => setSessions(data));
-  }, []);
-
-  const handleBookSession = async (sessionId) => {
-    await fetch(`/api/sessions/${sessionId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ clientId: 2, status: "booked" }), // Mocked clientId
-    });
-    // Refresh sessions
-    fetch("/api/sessions")
-      .then((res) => res.json())
-      .then((data) => setSessions(data));
-  };
+    if (user) {
+      // Fetch trainer assigned to this client
+      const fetchTrainer = async () => {
+        try {
+          const response = await fetch(`/api/clients/${user.id}/trainer`);
+          const data = await response.json();
+          setTrainer(data);
+        } catch (error) {
+          console.error("Failed to fetch trainer:", error);
+        }
+      };
+      fetchTrainer();
+    }
+  }, [user]);
 
   return (
-    <div>
-      <h2>Available Sessions</h2>
-      <ul>
-        {sessions
-          .filter((session) => session.status === "available")
-          .map((session) => (
-            <li key={session.sessionId}>
-              Session at {session.sessionTime} -{" "}
-              <button onClick={() => handleBookSession(session.sessionId)}>
-                Book Now
-              </button>
-            </li>
-          ))}
-      </ul>
+    <div className="p-10">
+      <h2 className="text-3xl font-bold mb-6">My Trainer</h2>
+      {trainer ? (
+        <div className="border rounded-lg p-6 bg-white shadow-md">
+          <p className="text-xl font-semibold">{trainer.name}</p>
+          <p className="text-gray-700 mb-4">{trainer.email}</p>
+          <button
+            onClick={() => setShowChat(!showChat)}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
+          >
+            {showChat ? "Close Chat" : "Chat with Trainer"}
+          </button>
+          {showChat && (
+            <div className="mt-6">
+              <Chat otherUserId={trainer.id} />
+            </div>
+          )}
+        </div>
+      ) : (
+        <p className="text-gray-700">No trainer assigned.</p>
+      )}
     </div>
   );
 }
