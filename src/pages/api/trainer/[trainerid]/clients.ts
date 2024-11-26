@@ -4,7 +4,10 @@ import { db } from "@/lib/db";
 import { usersTable } from "@/lib/schema";
 import { eq, and } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { trainerId } = req.query;
 
   if (req.method !== "GET") {
@@ -26,8 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .where(
         and(
           eq(usersTable.assignedTrainerId, parseInt(trainerId, 10)),
-          eq(usersTable.role, "client")
-        )
+          eq(usersTable.role, "client"),
+        ),
       );
 
     res.status(200).json(assignedClients);

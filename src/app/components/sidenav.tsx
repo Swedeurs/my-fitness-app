@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export function SideNav() {
-    const { logout } = useUser();
+  const { logout } = useUser();
   const router = useRouter();
 
-    const handleLogout = () => {
-        logout();
-        router.push("/");
-      };
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <aside

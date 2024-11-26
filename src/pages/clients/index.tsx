@@ -4,7 +4,6 @@ import { useUser } from "@/hooks/use-user";
 export default function ClientLandingPage() {
   const { login } = useUser();
 
-
   const handleClientLogin = () => {
     login({
       id: 2,

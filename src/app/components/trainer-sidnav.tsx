@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
@@ -6,7 +5,6 @@ import { useRouter } from "next/router";
 export function TrainerSideNav() {
   const { logout } = useUser();
   const router = useRouter();
-
 
   const handleLogout = () => {
     logout();
@@ -23,9 +21,16 @@ export function TrainerSideNav() {
         minHeight: "100vh",
       }}
     >
-      <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", marginBottom: "2.5rem" }}>Trainer Dashboard</h2>
+      <h2
+        style={{
+          fontSize: "1.875rem",
+          fontWeight: "bold",
+          marginBottom: "2.5rem",
+        }}
+      >
+        Trainer Dashboard
+      </h2>
       <nav style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-
         <Link href="/chat-with-clients">
           <span
             style={{
@@ -39,7 +44,6 @@ export function TrainerSideNav() {
           </span>
         </Link>
 
-
         <Link href="/trainer-clients">
           <span
             style={{
@@ -52,7 +56,6 @@ export function TrainerSideNav() {
             Clients
           </span>
         </Link>
-
 
         <button
           onClick={handleLogout}
@@ -72,4 +75,3 @@ export function TrainerSideNav() {
     </aside>
   );
 }
-

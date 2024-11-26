@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { usersTable } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);

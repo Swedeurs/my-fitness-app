@@ -4,7 +4,6 @@ import { Client } from "@/types";
 import Chat from "./chat";
 import { TrainerSideNav } from "./trainer-sidnav";
 
-
 export default function TrainerDashboard() {
   const { user } = useUser();
   const [clients, setClients] = useState<Client[]>([]);
@@ -58,7 +57,10 @@ export default function TrainerDashboard() {
 
       if (response.ok) {
         // Re-fetch assigned and unassigned clients after a successful assignment
-        setClients((prev) => [...prev, unassignedClients.find((c) => c.id === clientId)!]);
+        setClients((prev) => [
+          ...prev,
+          unassignedClients.find((c) => c.id === clientId)!,
+        ]);
         setUnassignedClients((prev) => prev.filter((c) => c.id !== clientId));
       } else {
         setError("Failed to assign client");
@@ -69,11 +71,34 @@ export default function TrainerDashboard() {
   };
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e0e0e0" }}>
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        backgroundColor: "#0a0a0a",
+        color: "#e0e0e0",
+      }}
+    >
       <TrainerSideNav />
 
-      <div style={{ flex: "1", padding: "2.5rem", maxWidth: "96rem", margin: "0 auto" }}>
-        <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>My Clients</h2>
+      <div
+        style={{
+          flex: "1",
+          padding: "2.5rem",
+          maxWidth: "96rem",
+          margin: "0 auto",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "2.25rem",
+            fontWeight: "bold",
+            marginBottom: "1.5rem",
+            color: "#00ff66",
+          }}
+        >
+          My Clients
+        </h2>
 
         {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
 
@@ -83,8 +108,17 @@ export default function TrainerDashboard() {
             <p style={{ color: "#e0e0e0" }}>No clients assigned yet.</p>
           ) : (
             clients.map((client) => (
-              <div key={client.id} style={{ border: "1px solid #00ff66", padding: "1.5rem", backgroundColor: "#1a1a1a" }}>
-                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{client.name}</p>
+              <div
+                key={client.id}
+                style={{
+                  border: "1px solid #00ff66",
+                  padding: "1.5rem",
+                  backgroundColor: "#1a1a1a",
+                }}
+              >
+                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                  {client.name}
+                </p>
                 <button
                   onClick={() => setSelectedClient(client)}
                   style={{
@@ -104,14 +138,32 @@ export default function TrainerDashboard() {
         </div>
 
         {/* Unassigned Clients */}
-        <h2 style={{ fontSize: "2rem", fontWeight: "bold", margin: "2.5rem 0 1.5rem", color: "#00ff66" }}>Unassigned Clients</h2>
+        <h2
+          style={{
+            fontSize: "2rem",
+            fontWeight: "bold",
+            margin: "2.5rem 0 1.5rem",
+            color: "#00ff66",
+          }}
+        >
+          Unassigned Clients
+        </h2>
         <div className="grid gap-6">
           {unassignedClients.length === 0 ? (
             <p style={{ color: "#e0e0e0" }}>No unassigned clients available.</p>
           ) : (
             unassignedClients.map((client) => (
-              <div key={client.id} style={{ border: "1px solid #00ff66", padding: "1.5rem", backgroundColor: "#1a1a1a" }}>
-                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{client.name}</p>
+              <div
+                key={client.id}
+                style={{
+                  border: "1px solid #00ff66",
+                  padding: "1.5rem",
+                  backgroundColor: "#1a1a1a",
+                }}
+              >
+                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                  {client.name}
+                </p>
                 <button
                   onClick={() => assignClient(client.id)}
                   style={{
@@ -132,7 +184,16 @@ export default function TrainerDashboard() {
 
         {selectedClient && (
           <div style={{ marginTop: "2.5rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>Chat with {selectedClient.name}</h2>
+            <h2
+              style={{
+                fontSize: "2rem",
+                fontWeight: "bold",
+                marginBottom: "1.5rem",
+                color: "#00ff66",
+              }}
+            >
+              Chat with {selectedClient.name}
+            </h2>
             <Chat otherUserId={selectedClient.id} />
             <button
               onClick={() => setSelectedClient(null)}
