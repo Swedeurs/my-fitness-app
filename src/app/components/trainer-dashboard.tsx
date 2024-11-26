@@ -12,7 +12,6 @@ export default function TrainerDashboard() {
 
   useEffect(() => {
     if (user) {
-      // Fetch notifications for the trainer
       const fetchNotifications = async () => {
         try {
           const response = await fetch(`/api/notifications?userId=${user.id}`);
@@ -24,7 +23,6 @@ export default function TrainerDashboard() {
       };
       fetchNotifications();
 
-      // Fetch clients assigned to this trainer
       const fetchClients = async () => {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
