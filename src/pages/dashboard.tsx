@@ -12,11 +12,7 @@ export default function Dashboard() {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-6">Dashboard</h1>
-      {user.role === "trainer" ? (
-        <TrainerDashboard />
-      ) : (
-        <ClientDashboard />
-      )}
+      {user.role === "trainer" ? <TrainerDashboard /> : <ClientDashboard />}
     </div>
   );
 }

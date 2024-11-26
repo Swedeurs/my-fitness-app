@@ -19,7 +19,9 @@ export default async function sessionIndexhandler(
     // Handle POST request: Create a new session
     const { trainerId, sessionTime } = req.body;
     if (!trainerId || !sessionTime) {
-      res.status(400).json({ error: "Missing required fields: trainerId or sessionTime" });
+      res
+        .status(400)
+        .json({ error: "Missing required fields: trainerId or sessionTime" });
       return;
     }
     try {

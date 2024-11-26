@@ -5,11 +5,23 @@ import React from "react";
 export default function MealPlan() {
   // Mock meal plan data
   const meals = [
-    { day: "Monday", meal: "Vegan Breakfast Smoothie, Quinoa Salad, Stir-fry Vegetables" },
-    { day: "Tuesday", meal: "Oatmeal with Berries, Chickpea Wrap, Veggie Tacos" },
-    { day: "Wednesday", meal: "Green Smoothie, Mixed Greens Salad, Baked Tofu with Rice" },
+    {
+      day: "Monday",
+      meal: "Vegan Breakfast Smoothie, Quinoa Salad, Stir-fry Vegetables",
+    },
+    {
+      day: "Tuesday",
+      meal: "Oatmeal with Berries, Chickpea Wrap, Veggie Tacos",
+    },
+    {
+      day: "Wednesday",
+      meal: "Green Smoothie, Mixed Greens Salad, Baked Tofu with Rice",
+    },
     { day: "Thursday", meal: "Chia Pudding, Buddha Bowl, Stuffed Peppers" },
-    { day: "Friday", meal: "Protein Pancakes, Sweet Potato Curry, Pesto Pasta" },
+    {
+      day: "Friday",
+      meal: "Protein Pancakes, Sweet Potato Curry, Pesto Pasta",
+    },
   ];
 
   return (

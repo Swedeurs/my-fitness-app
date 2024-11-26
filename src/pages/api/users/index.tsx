@@ -3,9 +3,13 @@ import { db } from "@/lib/db";
 import { usersTable } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === "POST") {
-    const { name, email, age, role, fitnessLevel, dietaryPreferences } = req.body;
+    const { name, email, age, role, fitnessLevel, dietaryPreferences } =
+      req.body;
 
     if (!name || !email || !age || !role) {
       res.status(400).json({ error: "Missing required fields" });

@@ -30,7 +30,10 @@ const UserInputForm = ({ userRole, onSuccess }: UserInputFormProps) => {
         }
       } else {
         const errorData = await response.json();
-        if (response.status === 400 && errorData.error === "Email is already registered") {
+        if (
+          response.status === 400 &&
+          errorData.error === "Email is already registered"
+        ) {
           alert("This email is already in use. Please use a different email.");
         } else {
           console.error("Form submission failed:", response.statusText);
@@ -88,7 +91,9 @@ const UserInputForm = ({ userRole, onSuccess }: UserInputFormProps) => {
           Fitness Level:
         </label>
         <select
-          {...register("fitnessLevel", { required: "Fitness level is required" })}
+          {...register("fitnessLevel", {
+            required: "Fitness level is required",
+          })}
           id="fitnessLevel"
           className="border p-2 rounded-md w-full"
         >
@@ -109,7 +114,9 @@ const UserInputForm = ({ userRole, onSuccess }: UserInputFormProps) => {
           Dietary Preferences:
         </label>
         <select
-          {...register("dietaryPreferences", { required: "Dietary preference is required" })}
+          {...register("dietaryPreferences", {
+            required: "Dietary preference is required",
+          })}
           id="dietaryPreferences"
           className="border p-2 rounded-md w-full"
         >

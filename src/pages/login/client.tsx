@@ -1,6 +1,6 @@
 import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
-import { UserRole } from "@/types"; 
+import { UserRole } from "@/types";
 
 export default function ClientLogin() {
   const { login } = useUser();

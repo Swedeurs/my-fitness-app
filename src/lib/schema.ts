@@ -1,4 +1,10 @@
-import { pgTable, varchar, integer, timestamp, text } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  varchar,
+  integer,
+  timestamp,
+  text,
+} from "drizzle-orm/pg-core";
 
 // User Table
 export const usersTable = pgTable("users", {
@@ -14,23 +20,26 @@ export const usersTable = pgTable("users", {
   trainingPreferences: text("training_preferences"),
 });
 
-
-
 // Sessions Table
 export const sessionsTable = pgTable("sessions", {
   id: integer("session_id").primaryKey().generatedAlwaysAsIdentity(),
-  trainerId: integer("trainer_id").notNull().references(() => usersTable.id),
+  trainerId: integer("trainer_id")
+    .notNull()
+    .references(() => usersTable.id),
   clientId: integer("client_id").references(() => usersTable.id),
   sessionTime: timestamp("session_time").notNull(),
   status: text("status").notNull(),
 });
 
-
 // Chat Messages Table
 export const chatMessagesTable = pgTable("chat_messages", {
-  id: integer("message_id").primaryKey().generatedAlwaysAsIdentity(), 
-  senderId: integer("sender_id").notNull().references(() => usersTable.id),
-  receiverId: integer("receiver_id").notNull().references(() => usersTable.id),
+  id: integer("message_id").primaryKey().generatedAlwaysAsIdentity(),
+  senderId: integer("sender_id")
+    .notNull()
+    .references(() => usersTable.id),
+  receiverId: integer("receiver_id")
+    .notNull()
+    .references(() => usersTable.id),
   message: text("message").notNull(),
   timestamp: timestamp("timestamp").defaultNow(),
 });
@@ -38,9 +47,15 @@ export const chatMessagesTable = pgTable("chat_messages", {
 // Reviews Table
 export const reviewsTable = pgTable("reviews", {
   id: integer("review_id").primaryKey().generatedAlwaysAsIdentity(),
-  sessionId: integer("session_id").notNull().references(() => sessionsTable.id),
-  reviewerId: integer("reviewer_id").notNull().references(() => usersTable.id), 
-  revieweeId: integer("reviewee_id").notNull().references(() => usersTable.id), 
+  sessionId: integer("session_id")
+    .notNull()
+    .references(() => sessionsTable.id),
+  reviewerId: integer("reviewer_id")
+    .notNull()
+    .references(() => usersTable.id),
+  revieweeId: integer("reviewee_id")
+    .notNull()
+    .references(() => usersTable.id),
   rating: integer("rating").notNull(),
   comment: text("comment"),
   timestamp: timestamp("timestamp").defaultNow(),
@@ -49,7 +64,7 @@ export const reviewsTable = pgTable("reviews", {
 // Notifications Table
 export const notificationsTable = pgTable("notifications", {
   id: integer("notification_id").primaryKey().generatedAlwaysAsIdentity(),
-  userId: integer("user_id").notNull(), 
+  userId: integer("user_id").notNull(),
   message: text("message").notNull(),
   timestamp: timestamp("timestamp").defaultNow(),
 });

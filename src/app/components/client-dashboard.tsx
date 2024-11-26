@@ -21,7 +21,9 @@ export default function ClientDashboard() {
               setError("No trainer assigned to this client yet.");
               return;
             }
-            throw new Error(`Failed to fetch trainer. Status: ${response.status}`);
+            throw new Error(
+              `Failed to fetch trainer. Status: ${response.status}`,
+            );
           }
           const data = await response.json();
           setTrainer(data);
@@ -60,7 +62,8 @@ export default function ClientDashboard() {
             No trainer assigned yet.
           </p>
           <p className="text-gray-500">
-            Once a trainer is assigned, you will be able to see their information here and start chatting with them.
+            Once a trainer is assigned, you will be able to see their
+            information here and start chatting with them.
           </p>
         </div>
       )}

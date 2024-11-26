@@ -24,10 +24,16 @@ export default function Navbar() {
             </button>
           ) : (
             <>
-              <Link href="/login/client" className="hover:text-white transition">
+              <Link
+                href="/login/client"
+                className="hover:text-white transition"
+              >
                 Login as Client
               </Link>
-              <Link href="/login/trainer" className="hover:text-white transition">
+              <Link
+                href="/login/trainer"
+                className="hover:text-white transition"
+              >
                 Login as Trainer
               </Link>
             </>

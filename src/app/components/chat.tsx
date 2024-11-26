@@ -2,8 +2,6 @@ import { useUser } from "@/hooks/use-user";
 import { ChatMessage } from "@/types";
 import { useEffect, useState } from "react";
 
-
-
 export default function Chat({ otherUserId }: { otherUserId: number }) {
   const { user } = useUser();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -42,14 +40,18 @@ export default function Chat({ otherUserId }: { otherUserId: number }) {
 
       setMessages((prev) => [
         ...prev,
-        { senderId: user.id, receiverId: otherUserId, message: newMessage, timestamp: new Date().toISOString() },
+        {
+          senderId: user.id,
+          receiverId: otherUserId,
+          message: newMessage,
+          timestamp: new Date().toISOString(),
+        },
       ]);
       setNewMessage("");
     } catch (error) {
       console.error("Failed to send message:", error);
     }
   };
-
 
   if (!user) {
     return <div>Loading...</div>;

@@ -5,9 +5,7 @@ export function generateWorkoutPlan(userPreferences: {
   trainingPreferences: string;
   timeAvailability: number;
 }): WorkoutPlanItem[] {
-
   const workoutPlans: { [key: string]: WorkoutPlanItem[] } = {
-
     "home-beginner": [
       { day: "Monday", workout: "Bodyweight Squats, Push-Ups, Plank" },
       { day: "Wednesday", workout: "Lunges, Dumbbell Rows, Side Plank" },

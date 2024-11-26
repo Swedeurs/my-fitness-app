@@ -23,7 +23,10 @@ export default function UserDashboard() {
             setPartner(data);
           }
         } catch (error) {
-          console.error(`Failed to fetch ${user.role === "client" ? "trainer" : "clients"}:`, error);
+          console.error(
+            `Failed to fetch ${user.role === "client" ? "trainer" : "clients"}:`,
+            error,
+          );
         }
       };
       fetchPartner();
@@ -41,7 +44,9 @@ export default function UserDashboard() {
           <h2 className="text-3xl font-bold mb-6">My Trainer</h2>
           {partner ? (
             <div className="border rounded-lg p-6 bg-white shadow-md">
-              <p className="text-xl font-semibold">{(partner as Trainer).name}</p>
+              <p className="text-xl font-semibold">
+                {(partner as Trainer).name}
+              </p>
               <p className="text-gray-700 mb-4">{(partner as Trainer).email}</p>
               <button
                 onClick={() => setShowChat(!showChat)}
@@ -67,7 +72,10 @@ export default function UserDashboard() {
           {Array.isArray(partner) && partner.length > 0 ? (
             <div className="grid gap-6">
               {(partner as Client[]).map((client) => (
-                <div key={client.id} className="border rounded-lg p-6 bg-white shadow-md">
+                <div
+                  key={client.id}
+                  className="border rounded-lg p-6 bg-white shadow-md"
+                >
                   <p className="text-xl font-semibold">{client.name}</p>
                   <p className="text-gray-700 mb-4">{client.email}</p>
                   <button
@@ -82,15 +90,19 @@ export default function UserDashboard() {
                     }}
                     className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
                   >
-                    {showChat && selectedClient && selectedClient.id === client.id
+                    {showChat &&
+                    selectedClient &&
+                    selectedClient.id === client.id
                       ? "Close Chat"
                       : `Chat with ${client.name}`}
                   </button>
-                  {showChat && selectedClient && selectedClient.id === client.id && (
-                    <div className="mt-6">
-                      <Chat otherUserId={client.id} />
-                    </div>
-                  )}
+                  {showChat &&
+                    selectedClient &&
+                    selectedClient.id === client.id && (
+                      <div className="mt-6">
+                        <Chat otherUserId={client.id} />
+                      </div>
+                    )}
                 </div>
               ))}
             </div>

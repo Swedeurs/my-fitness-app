@@ -6,7 +6,10 @@ import { sessionsTable, usersTable } from "../../../lib/schema";
 import { eq } from "drizzle-orm";
 
 // API handler for getting trainer info for a given userId
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { userId } = req.query;
 
   if (req.method !== "GET") {

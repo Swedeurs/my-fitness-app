@@ -5,7 +5,10 @@ import { db } from "@/lib/db";
 import { sessionsTable, usersTable } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { trainerId } = req.query;
 
   if (req.method !== "GET") {
@@ -33,7 +36,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Extract client IDs from sessions and fetch corresponding user details
-    const clientIds = sessions.map((session) => session.clientId).filter((id) => id !== null);
+    const clientIds = sessions
+      .map((session) => session.clientId)
+      .filter((id) => id !== null);
     if (clientIds.length === 0) {
       res.status(404).json({ error: "No clients found for this trainer." });
       return;
