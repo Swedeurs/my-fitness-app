@@ -1,5 +1,6 @@
 import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
+import { UserRole } from "@/types"; // Assuming UserRole is imported from types
 
 export default function ClientLogin() {
   const { login } = useUser();
@@ -10,10 +11,10 @@ export default function ClientLogin() {
       id: 1,
       name: "Client User",
       email: "client@example.com",
-      role: "client",
+      role: "client" as UserRole, // Assert the role as UserRole
     };
     login(clientUser);
-    router.push("/dashboard/client");
+    router.push("/dashboard");
   };
 
   return (

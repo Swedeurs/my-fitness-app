@@ -1,6 +1,7 @@
-
 import { useUser } from "@/hooks/use-user";
+import { UserRole } from "@/types";
 import { useRouter } from "next/router";
+
 
 export default function TrainerLogin() {
   const { login } = useUser();
@@ -11,10 +12,10 @@ export default function TrainerLogin() {
       id: 2,
       name: "Trainer User",
       email: "trainer@example.com",
-      role: "trainer",
+      role: "trainer" as UserRole,
     };
     login(trainerUser);
-    router.push("/dashboard/trainer");
+    router.push("/dashboard");
   };
 
   return (
