@@ -1,5 +1,3 @@
-// /pages/trainer-clients.tsx
-
 import { useUser } from "@/hooks/use-user";
 import { useEffect, useState } from "react";
 import { Client } from "@/types";
