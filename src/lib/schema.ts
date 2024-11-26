@@ -18,6 +18,7 @@ export const usersTable = pgTable("users", {
   fitnessLevel: text("fitness_level"),
   dietaryPreferences: text("dietary_preferences"),
   trainingPreferences: text("training_preferences"),
+  assignedTrainerId: integer("assigned_trainer_id"),
 });
 
 // Sessions Table
