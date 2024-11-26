@@ -1,7 +1,8 @@
+// /pages/api/trainers/[trainerId]/clients.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
 import { usersTable } from "@/lib/schema";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { trainerId } = req.query;
@@ -18,11 +19,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-
+    // Fetch clients assigned to a trainer
     const assignedClients = await db
       .select()
       .from(usersTable)
-      .where(eq(usersTable.assignedTrainerId, parseInt(trainerId, 10)));
+      .where(
+        and(
+          eq(usersTable.assignedTrainerId, parseInt(trainerId, 10)),
+          eq(usersTable.role, "client")
+        )
+      );
 
     res.status(200).json(assignedClients);
   } catch (error) {

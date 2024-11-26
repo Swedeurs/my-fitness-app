@@ -4,8 +4,8 @@ import { useUser } from "@/hooks/use-user";
 export default function TrainerLandingPage() {
   const { login } = useUser();
 
-
-  const handleTrainerLogin = () => {
+  // Function to simulate trainer login with hardcoded user ID of 6
+  const handleTrainerLogin = async () => {
     login({
       id: 6,
       name: "Trainer User",
@@ -13,6 +13,16 @@ export default function TrainerLandingPage() {
       role: "trainer",
     });
 
+    // Assign client ID 2 to trainer ID 6 after login
+    try {
+      await fetch("/api/assign-client", {
+        method: "POST",
+      });
+    } catch (error) {
+      console.error("Failed to assign client:", error);
+    }
+
+    // Redirect to dashboard after login
     if (typeof window !== "undefined") {
       window.location.href = "/dashboard";
     }
@@ -30,7 +40,7 @@ export default function TrainerLandingPage() {
         <p className="mb-6 text-lg text-gray-300">
           Manage your clients and grow your business!
         </p>
-
+        {/* Username and Password fields for looks only */}
         <div className="w-full mb-6">
           <input
             type="text"
