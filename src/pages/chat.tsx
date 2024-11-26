@@ -1,14 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
-import { text, serial, pgTable, timestamp } from "drizzle-orm/pg-core";
+import { chatMessagesTable } from "@/lib/schema";
 
-export const chatMessages = pgTable("chat_messages", {
-  messageId: serial("message_id").primaryKey(),
-  senderId: text("sender_id"),
-  receiverId: text("receiver_id"),
-  message: text("message"),
-  timestamp: timestamp("timestamp").defaultNow(),
-});
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,9 +10,10 @@ export default async function handler(
   if (req.method === "POST") {
     const { senderId, receiverId, message } = req.body;
     try {
-      await db.insert(chatMessages).values({ senderId, receiverId, message });
+      await db.insert(chatMessagesTable).values({ senderId, receiverId, message });
       res.status(201).json({ message: "Message sent" });
     } catch (error) {
+      console.error("Failed to send message:", error); // Log the error
       res.status(500).json({ error: "Failed to send message" });
     }
   } else {

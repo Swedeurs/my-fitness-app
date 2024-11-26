@@ -1,31 +1,36 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
-import { sessions } from "@/lib/schema";
-import { eq } from "drizzle-orm";
+import { sessionsTable } from "@/lib/schema";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   if (req.method === "GET") {
-    // Get all sessions
+    // Handle GET request: Get all sessions
     try {
-      const allSessions = await db.select().from(sessions);
+      const allSessions = await db.select().from(sessionsTable);
       res.status(200).json(allSessions);
     } catch (error) {
+      console.error("Failed to retrieve sessions:", error); // Log the error
       res.status(500).json({ error: "Failed to retrieve sessions" });
     }
   } else if (req.method === "POST") {
-    // Create a new session
+    // Handle POST request: Create a new session
     const { trainerId, sessionTime } = req.body;
+    if (!trainerId || !sessionTime) {
+      res.status(400).json({ error: "Missing required fields: trainerId or sessionTime" });
+      return;
+    }
     try {
-      const newSession = await db.insert(sessions).values({
+      const newSession = await db.insert(sessionsTable).values({
         trainerId,
         sessionTime,
         status: "available",
       });
       res.status(201).json(newSession);
     } catch (error) {
+      console.error("Failed to create a session:", error); // Log the error
       res.status(500).json({ error: "Failed to create a session" });
     }
   } else {
