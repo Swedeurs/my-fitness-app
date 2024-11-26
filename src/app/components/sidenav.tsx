@@ -1,6 +1,16 @@
+import { useUser } from "@/hooks/use-user";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export function SideNav() {
+    const { logout } = useUser();
+  const router = useRouter();
+
+    const handleLogout = () => {
+        logout();
+        router.push("/");
+      };
+
   return (
     <aside
       style={{
@@ -60,6 +70,20 @@ export function SideNav() {
         >
           Chat with Trainer
         </Link>
+        <button
+          onClick={handleLogout}
+          style={{
+            backgroundColor: "#00ff66",
+            color: "#000000",
+            padding: "0.5rem 1rem",
+            borderRadius: "0.375rem",
+            border: "none",
+            cursor: "pointer",
+            marginTop: "2rem",
+          }}
+        >
+          Logout
+        </button>
       </nav>
     </aside>
   );
