@@ -1,116 +1,115 @@
 import { useEffect, useState } from "react";
 import { useUser } from "@/hooks/use-user";
-import { Client, Notification } from "@/types";
+import { Client } from "@/types";
 import Chat from "./chat";
+import { TrainerSideNav } from "./trainer-sidnav";
+
 
 export default function TrainerDashboard() {
   const { user } = useUser();
-  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch assigned clients when component mounts
   useEffect(() => {
     if (user) {
-      const fetchNotifications = async () => {
-        try {
-          const response = await fetch(`/api/notifications?userId=${user.id}`);
-          if (!response.ok) {
-            throw new Error("Failed to fetch notifications");
-          }
-          const data = await response.json();
-          setNotifications(data);
-        } catch (error) {
-          console.error("Failed to fetch notifications:", error);
-          setError("Failed to fetch notifications.");
-        }
-      };
-
       const fetchClients = async () => {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
           if (!response.ok) {
-            throw new Error(
-              `Trainer not found or error fetching clients. Status: ${response.status}`,
-            );
-          }
-          const contentType = response.headers.get("content-type");
-          if (contentType && contentType.includes("application/json")) {
+            if (response.status === 404) {
+              // If there's a 404, it just means no clients are assigned yet.
+              setClients([]);
+            } else {
+              throw new Error(`Failed to fetch clients. Status: ${response.status}`);
+            }
+          } else {
             const data = await response.json();
             setClients(data);
-          } else {
-            throw new Error("Unexpected response type, not JSON.");
           }
         } catch (error) {
           console.error("Failed to fetch clients:", error);
-          setError("Failed to fetch clients.");
+          setError("An error occurred while trying to fetch clients.");
         }
       };
-
-      fetchNotifications();
       fetchClients();
     }
   }, [user]);
 
   return (
-    <div className="p-10">
-      <h2 className="text-3xl font-bold mb-6">Notifications</h2>
-      {error && <p className="text-red-500">{error}</p>}
-      <ul className="mb-10">
-        {notifications.length === 0 ? (
-          <p>No notifications at the moment.</p>
-        ) : (
-          notifications.map((notification) => (
-            <li
-              key={notification.notificationId}
-              className="bg-gray-100 p-4 mb-2 rounded-md shadow"
-            >
-              {notification.message} -{" "}
-              {new Date(notification.timestamp).toLocaleString()}
-            </li>
-          ))
-        )}
-      </ul>
+    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e0e0e0" }}>
+      {/* Side Navigation for Trainer */}
+      <TrainerSideNav />
 
-      <h2 className="text-3xl font-bold mb-6">My Clients</h2>
-      <div className="grid gap-6">
-        {clients.length === 0 ? (
-          <p>No clients assigned yet.</p>
-        ) : (
-          clients.map((client) => (
-            <div
-              key={client.id}
-              className="border rounded-lg p-6 bg-white shadow-md"
-            >
-              <p className="text-xl font-semibold">{client.name}</p>
-              <p className="text-gray-700 mb-4">{client.email}</p>
-              <button
-                onClick={() => setSelectedClient(client)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
+      <div style={{ flex: "1", padding: "2.5rem", maxWidth: "96rem", margin: "0 auto" }}>
+        <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>My Clients</h2>
+        
+        {/* Error message display */}
+        {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
+        
+        {/* Display the list of assigned clients */}
+        <div className="grid gap-6">
+          {clients.length === 0 ? (
+            <p style={{ color: "#e0e0e0" }}>No clients assigned yet.</p>
+          ) : (
+            clients.map((client) => (
+              <div
+                key={client.id}
+                style={{
+                  border: "1px solid #00ff66",
+                  borderRadius: "0.5rem",
+                  padding: "1.5rem",
+                  backgroundColor: "#1a1a1a",
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                }}
               >
-                {selectedClient && selectedClient.id === client.id
-                  ? "Close Chat"
-                  : `Chat with ${client.name}`}
-              </button>
-            </div>
-          ))
+                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{client.name}</p>
+                <p style={{ color: "#999999", marginBottom: "1rem" }}>{client.email}</p>
+                <button
+                  onClick={() => setSelectedClient(client)}
+                  style={{
+                    backgroundColor: "#00ff66",
+                    color: "#000000",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "0.375rem",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s",
+                  }}
+                >
+                  {selectedClient && selectedClient.id === client.id ? "Close Chat" : `Chat with ${client.name}`}
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Chat Section */}
+        {selectedClient && (
+          <div style={{ marginTop: "2.5rem" }}>
+            <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>
+              Chat with {selectedClient.name}
+            </h2>
+            <Chat otherUserId={selectedClient.id} />
+            <button
+              onClick={() => setSelectedClient(null)}
+              style={{
+                backgroundColor: "#ff6666",
+                color: "#ffffff",
+                padding: "0.5rem 1rem",
+                borderRadius: "0.375rem",
+                border: "none",
+                cursor: "pointer",
+                transition: "background-color 0.3s",
+                marginTop: "1.5rem",
+              }}
+            >
+              Close Chat
+            </button>
+          </div>
         )}
       </div>
-
-      {selectedClient && (
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-4">
-            Chat with {selectedClient.name}
-          </h2>
-          <Chat otherUserId={selectedClient.id} />
-          <button
-            onClick={() => setSelectedClient(null)}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition mt-4"
-          >
-            Close Chat
-          </button>
-        </div>
-      )}
     </div>
   );
 }
