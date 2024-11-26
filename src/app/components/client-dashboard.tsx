@@ -9,7 +9,7 @@ export default function ClientDashboard() {
   const [showChat, setShowChat] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  /* const [loading, setLoading] = useState<boolean>(true); */
+ const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     if (user) {
