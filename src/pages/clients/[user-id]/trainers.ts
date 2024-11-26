@@ -1,8 +1,11 @@
+// /pages/api/clients/[userId]/trainer.ts
+
 import { NextApiRequest, NextApiResponse } from "next";
-import { db } from "@/lib/db";
-import { sessionsTable, usersTable } from "@/lib/schema";
+import { db } from "../../../lib/db";
+import { sessionsTable, usersTable } from "../../../lib/schema";
 import { eq } from "drizzle-orm";
 
+// API handler for getting trainer info for a given userId
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { userId } = req.query;
 
@@ -12,25 +15,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
+  // Check if userId is provided
   if (!userId || typeof userId !== "string") {
     res.status(400).json({ error: "Invalid user ID" });
     return;
   }
 
   try {
-    // Get the session where this client is assigned a trainer
+    // Fetch a session involving this client to see if there's a trainer assigned
     const session = await db
       .select()
       .from(sessionsTable)
       .where(eq(sessionsTable.clientId, parseInt(userId, 10)))
       .limit(1);
 
-    if (!session.length) {
+    if (!session || session.length === 0) {
       res.status(404).json({ error: "No trainer assigned to this client." });
       return;
     }
 
-    // Get the trainer's information
+    // Fetch the trainer information from usersTable using trainerId from the session
     const trainerId = session[0].trainerId;
     const trainer = await db
       .select()
@@ -38,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .where(eq(usersTable.id, trainerId))
       .limit(1);
 
-    if (!trainer.length) {
+    if (!trainer || trainer.length === 0) {
       res.status(404).json({ error: "Trainer not found." });
       return;
     }
