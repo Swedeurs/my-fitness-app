@@ -1,6 +1,7 @@
-import UserInputForm from "@/components/UserInputForm";
+import UserInputForm from "@/app/components/forms/user-inputform";
 
-export default function ClientSignUp() {
+
+export  function ClientSignUp() {
   return (
     <div>
       <h1>Client Sign Up</h1>
@@ -9,7 +10,7 @@ export default function ClientSignUp() {
   );
 }
 
-export default function TrainerSignUp() {
+export function TrainerSignUp() {
   return (
     <div>
       <h1>Trainer Sign Up</h1>
