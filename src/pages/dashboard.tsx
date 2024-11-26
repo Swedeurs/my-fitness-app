@@ -1,7 +1,7 @@
+
 import ClientDashboard from "@/app/components/clientdshboard";
 import TrainerDashboard from "@/app/components/trainer-dashboard";
 import { useUser } from "@/hooks/use-user";
-
 
 export default function Dashboard() {
   const { user } = useUser();
