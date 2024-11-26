@@ -1,3 +1,5 @@
+
+
 export type MealPlanItem = {
   meal: string;
   recipe: string;
@@ -18,6 +20,11 @@ export type Client = {
   email: string;
 };
 
+export type UserRole = "client" | "trainer";
+
+
+
+
 export type User = {
   id: number;
   name: string;
@@ -25,9 +32,18 @@ export type User = {
   fitnessLevel?: string;
   trainingPreferences?: string;
   dietaryPreferences?: string;
-  role: string;
+  role: UserRole;
   timeAvailability?: number;
 };
+
+export interface UserFormInputs {
+  name: string;
+  email: string;
+  age: number;
+  fitnessLevel: "Strength Training" | "Cardio" | "Yoga" | "CrossFit" | "Pilates" | "Mixed Training";
+  dietaryPreferences: "Vegan" | "Vegetarian" | "Keto" | "Paleo" | "Low Carb" | "Balanced";
+}
+
 export type UserContextType = {
   user: User | null;
   login: (credentials: User) => void;
@@ -53,15 +69,6 @@ export type NotificationContextType = {
   notifications: Notification[];
   addNotification: (message: string) => void;
 };
-
-export interface UserFormInputs {
-  name: string;
-  email: string;
-  age: number;
-  fitnessPreferences?: string;
-  dietaryPreferences?: string;
-}
-
 
 export type ChatMessage = {
   senderId: number;
