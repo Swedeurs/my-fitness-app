@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
 import { sessionsTable } from "@/lib/schema";
 
-export default async function handler(
+export default async function sessionIndexhandler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {

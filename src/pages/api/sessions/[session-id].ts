@@ -10,7 +10,7 @@ export default async function sessionHandler(
   const { sessionId } = req.query;
 
   if (req.method === "DELETE") {
-    // Cancel session
+    // Handle DELETE request: Cancel the session
     try {
       // Fetch the session to get trainerId
       const session = await db
@@ -30,6 +30,7 @@ export default async function sessionHandler(
         .set({ status: "available", clientId: null })
         .where(eq(sessionsTable.id, parseInt(sessionId as string, 10)));
 
+      // Notify the trainer of session cancellation
       const notificationMessage = `Session at ${session[0].sessionTime} has been cancelled by the client.`;
       await db.insert(notificationsTable).values({
         userId: trainerId,

@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
 import { useUser } from "@/hooks/use-user";
 import { ChatMessage } from "@/types";
+import { useEffect, useState } from "react";
+
 
 
 export default function Chat({ otherUserId }: { otherUserId: number }) {

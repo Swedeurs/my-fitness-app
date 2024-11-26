@@ -1,5 +1,6 @@
 import { UserFormInputs } from "@/types";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 
 
 const UserInputForm = ({ userRole }: { userRole: string }) => {

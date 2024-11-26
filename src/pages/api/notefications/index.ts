@@ -1,10 +1,9 @@
-
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/lib/db";
 import { notificationsTable } from "@/lib/schema";
 import { eq, sql } from "drizzle-orm";
 
-export default async function handler(
+export default async function notificationHandler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -17,7 +16,6 @@ export default async function handler(
     }
 
     try {
-
       const notifications = await db
         .select()
         .from(notificationsTable)
@@ -25,7 +23,7 @@ export default async function handler(
         .orderBy(sql`${notificationsTable.timestamp} DESC`);
 
       res.status(200).json(notifications);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: "Failed to retrieve notifications" });
     }
   } else {
