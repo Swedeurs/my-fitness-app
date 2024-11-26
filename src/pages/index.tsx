@@ -11,15 +11,17 @@ export default function Home() {
           Are you a Client or a Personal Trainer?
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-          <Link href="/client" legacyBehavior>
-            <a className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-700 transition shadow-md transform hover:-translate-y-1">
-              I am a Client
-            </a>
+          <Link
+            href="/clients"
+            className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-700 transition shadow-md transform hover:-translate-y-1"
+          >
+            I am a Client
           </Link>
-          <Link href="/trainer" legacyBehavior>
-            <a className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-600 transition shadow-md transform hover:-translate-y-1">
-              I am a Trainer
-            </a>
+          <Link
+            href="/trainer"
+            className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-600 transition shadow-md transform hover:-translate-y-1"
+          >
+            I am a Trainer
           </Link>
         </div>
       </div>
