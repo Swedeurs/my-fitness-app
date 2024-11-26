@@ -15,6 +15,13 @@
       "when": 1732627923692,
       "tag": "0001_keen_barracuda",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1732648914072,
+      "tag": "0002_same_slayback",
+      "breakpoints": true
     }
   ]
 }
