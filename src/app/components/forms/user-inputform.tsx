@@ -1,61 +1,82 @@
-import { useUser } from "@/hooks/use-user";
-import { useForm } from "react-hook-form";
+import { UserFormInputs } from "@/types";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 
-type UserPreferencesForm = {
-  fitnessLevel: string;
-  trainingPreferences: string;
-  dietaryPreferences: string;
-  timeAvailability: number;
-};
+const UserInputForm = ({ userRole }: { userRole: string }) => {
+  const { register, handleSubmit } = useForm<UserFormInputs>();
 
-const UserInputForm = ({ userRole }: { userRole: "client" | "trainer" }) => {
-  const { register, handleSubmit } = useForm<UserPreferencesForm>();
-  const { login } = useUser();
-
-  const onSubmit = async (data: UserPreferencesForm) => {
-    // Mock login - pretend the user was successfully created
-    const user = {
-      id: 1, // Mocked ID
-      name: userRole === "client" ? "Client User" : "Trainer User",
-      email: `${userRole}@example.com`,
-      role: userRole,
-      ...data,
-    };
-    login(user);
-    window.location.href = "/dashboard";
+  const onSubmit: SubmitHandler<UserFormInputs> = async (data) => {
+    const formData = { ...data, role: userRole };
+    await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Fitness Level:</label>
-      <select {...register("fitnessLevel")}>
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
-      </select>
-      <label>Training Preferences:</label>
-      <select {...register("trainingPreferences")}>
-        <option value="gym">Gym</option>
-        <option value="home">Home Workout</option>
-        <option value="running">Running</option>
-        <option value="swimming">Swimming</option>
-      </select>
-      <label>Dietary Preferences:</label>
-      <select {...register("dietaryPreferences")}>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="high-protein">High Protein</option>
-        <option value="low-carb">Low Carb</option>
-        <option value="high-carb">High Carb</option>
-      </select>
-      <label>Time Availability (hours per week):</label>
-      <input
-        type="number"
-        {...register("timeAvailability", { valueAsNumber: true })}
-        min="1"
-        max="168"
-      />
-      <button type="submit">Save Preferences</button>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div>
+        <label htmlFor="name" className="block font-semibold">
+          Name:
+        </label>
+        <input
+          {...register("name", { required: true })}
+          type="text"
+          id="name"
+          className="border p-2 rounded-md w-full"
+        />
+      </div>
+      <div>
+        <label htmlFor="email" className="block font-semibold">
+          Email:
+        </label>
+        <input
+          {...register("email", { required: true })}
+          type="email"
+          id="email"
+          className="border p-2 rounded-md w-full"
+        />
+      </div>
+      <div>
+        <label htmlFor="age" className="block font-semibold">
+          Age:
+        </label>
+        <input
+          {...register("age", { required: true, valueAsNumber: true })}
+          type="number"
+          id="age"
+          className="border p-2 rounded-md w-full"
+        />
+      </div>
+      <div>
+        <label htmlFor="fitnessPreferences" className="block font-semibold">
+          Fitness Preferences:
+        </label>
+        <input
+          {...register("fitnessPreferences")}
+          type="text"
+          id="fitnessPreferences"
+          className="border p-2 rounded-md w-full"
+        />
+      </div>
+      <div>
+        <label htmlFor="dietaryPreferences" className="block font-semibold">
+          Dietary Preferences:
+        </label>
+        <input
+          {...register("dietaryPreferences")}
+          type="text"
+          id="dietaryPreferences"
+          className="border p-2 rounded-md w-full"
+        />
+      </div>
+      <button
+        type="submit"
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition"
+      >
+        Submit
+      </button>
     </form>
   );
 };
