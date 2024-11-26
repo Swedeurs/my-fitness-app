@@ -3,38 +3,49 @@ import { useUser } from "@/hooks/use-user";
 import { Client, Notification } from "@/types";
 import Chat from "./chat";
 
-
 export default function TrainerDashboard() {
   const { user } = useUser();
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
       const fetchNotifications = async () => {
         try {
           const response = await fetch(`/api/notifications?userId=${user.id}`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch notifications");
+          }
           const data = await response.json();
           setNotifications(data);
         } catch (error) {
           console.error("Failed to fetch notifications:", error);
+          setError("Failed to fetch notifications.");
         }
       };
-      fetchNotifications();
 
       const fetchClients = async () => {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
           if (!response.ok) {
-            throw new Error(`Trainer not found or error fetching trainer. Status: ${response.status}`);
+            throw new Error(`Trainer not found or error fetching clients. Status: ${response.status}`);
           }
-          const data = await response.json();
-          setClients(data);
+          const contentType = response.headers.get("content-type");
+          if (contentType && contentType.includes("application/json")) {
+            const data = await response.json();
+            setClients(data);
+          } else {
+            throw new Error("Unexpected response type, not JSON.");
+          }
         } catch (error) {
           console.error("Failed to fetch clients:", error);
+          setError("Failed to fetch clients.");
         }
       };
+
+      fetchNotifications();
       fetchClients();
     }
   }, [user]);
@@ -42,6 +53,7 @@ export default function TrainerDashboard() {
   return (
     <div className="p-10">
       <h2 className="text-3xl font-bold mb-6">Notifications</h2>
+      {error && <p className="text-red-500">{error}</p>}
       <ul className="mb-10">
         {notifications.length === 0 ? (
           <p>No notifications at the moment.</p>
