@@ -12,62 +12,28 @@ export function TrainerSideNav() {
   };
 
   return (
-    <aside
-      style={{
-        width: "16rem",
-        backgroundColor: "#000000",
-        color: "#00ff66",
-        padding: "1.5rem",
-        minHeight: "100vh",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "1.875rem",
-          fontWeight: "bold",
-          marginBottom: "2.5rem",
-        }}
-      >
-        Trainer Dashboard
-      </h2>
-      <nav style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <aside className="w-72 bg-gradient-to-b from-blue-900 to-blue-800 text-white p-6 min-h-screen shadow-lg">
+      <h2 className="text-4xl font-semibold mb-8">Trainer Dashboard</h2>
+
+      <nav className="flex flex-col gap-6">
+        {/* Chat with Clients Link */}
         <Link href="/chat-with-clients">
-          <span
-            style={{
-              color: "#00ff66",
-              textDecoration: "none",
-              transition: "color 0.3s",
-              cursor: "pointer",
-            }}
-          >
+          <p className="text-lg font-medium text-green-400 hover:text-green-300 transition-colors duration-300">
             Chat with Clients
-          </span>
+          </p>
         </Link>
 
+        {/* Clients List Link */}
         <Link href="/trainer-clients">
-          <span
-            style={{
-              color: "#00ff66",
-              textDecoration: "none",
-              transition: "color 0.3s",
-              cursor: "pointer",
-            }}
-          >
+          <p className="text-lg font-medium text-green-400 hover:text-green-300 transition-colors duration-300">
             Clients
-          </span>
+          </p>
         </Link>
 
+        {/* Logout Button */}
         <button
           onClick={handleLogout}
-          style={{
-            backgroundColor: "#00ff66",
-            color: "#000000",
-            padding: "0.5rem 1rem",
-            borderRadius: "0.375rem",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "2rem",
-          }}
+          className="bg-green-500 text-black py-3 px-6 rounded-lg mt-10 hover:bg-green-400 transition-colors duration-300 font-semibold"
         >
           Logout
         </button>
