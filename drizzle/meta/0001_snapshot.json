@@ -1,6 +1,6 @@
 {
-  "id": "224e473b-143d-4dd5-81d5-9762bc1d95ce",
-  "prevId": "fc4cf8e1-af72-406c-b6bb-14d5a8c8a9c0",
+  "id": "c8a62a4c-91c4-4e9b-ba51-b776ac9a0754",
+  "prevId": "f61ea5fe-8eb6-4578-87f3-e0fdcf177e8d",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -29,13 +29,13 @@
           "name": "sender_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "receiver_id": {
           "name": "receiver_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "message": {
           "name": "message",
@@ -53,27 +53,147 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "chat_messages_sender_id_users_user_id_fk": {
-          "name": "chat_messages_sender_id_users_user_id_fk",
+        "chat_messages_sender_id_clients_client_id_fk": {
+          "name": "chat_messages_sender_id_clients_client_id_fk",
           "tableFrom": "chat_messages",
-          "tableTo": "users",
-          "columnsFrom": ["sender_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "clients",
+          "columnsFrom": [
+            "sender_id"
+          ],
+          "columnsTo": [
+            "client_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "chat_messages_receiver_id_users_user_id_fk": {
-          "name": "chat_messages_receiver_id_users_user_id_fk",
+        "chat_messages_receiver_id_trainers_trainer_id_fk": {
+          "name": "chat_messages_receiver_id_trainers_trainer_id_fk",
           "tableFrom": "chat_messages",
-          "tableTo": "users",
-          "columnsFrom": ["receiver_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "trainers",
+          "columnsFrom": [
+            "receiver_id"
+          ],
+          "columnsTo": [
+            "trainer_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.clients": {
+      "name": "clients",
+      "schema": "",
+      "columns": {
+        "client_id": {
+          "name": "client_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "clients_client_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "age": {
+          "name": "age",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "weight": {
+          "name": "weight",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "height": {
+          "name": "height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fitness_level": {
+          "name": "fitness_level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dietary_preferences": {
+          "name": "dietary_preferences",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "training_preferences": {
+          "name": "training_preferences",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "assigned_trainer_id": {
+          "name": "assigned_trainer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "clients_assigned_trainer_id_trainers_trainer_id_fk": {
+          "name": "clients_assigned_trainer_id_trainers_trainer_id_fk",
+          "tableFrom": "clients",
+          "tableTo": "trainers",
+          "columnsFrom": [
+            "assigned_trainer_id"
+          ],
+          "columnsTo": [
+            "trainer_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "clients_email_unique": {
+          "name": "clients_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -103,7 +223,7 @@
           "name": "user_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "message": {
           "name": "message",
@@ -120,7 +240,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "notifications_user_id_clients_client_id_fk": {
+          "name": "notifications_user_id_clients_client_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "clients",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "client_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
@@ -158,13 +292,13 @@
           "name": "reviewer_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "reviewee_id": {
           "name": "reviewee_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "rating": {
           "name": "rating",
@@ -192,26 +326,38 @@
           "name": "reviews_session_id_sessions_session_id_fk",
           "tableFrom": "reviews",
           "tableTo": "sessions",
-          "columnsFrom": ["session_id"],
-          "columnsTo": ["session_id"],
+          "columnsFrom": [
+            "session_id"
+          ],
+          "columnsTo": [
+            "session_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "reviews_reviewer_id_users_user_id_fk": {
-          "name": "reviews_reviewer_id_users_user_id_fk",
+        "reviews_reviewer_id_clients_client_id_fk": {
+          "name": "reviews_reviewer_id_clients_client_id_fk",
           "tableFrom": "reviews",
-          "tableTo": "users",
-          "columnsFrom": ["reviewer_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "clients",
+          "columnsFrom": [
+            "reviewer_id"
+          ],
+          "columnsTo": [
+            "client_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "reviews_reviewee_id_users_user_id_fk": {
-          "name": "reviews_reviewee_id_users_user_id_fk",
+        "reviews_reviewee_id_trainers_trainer_id_fk": {
+          "name": "reviews_reviewee_id_trainers_trainer_id_fk",
           "tableFrom": "reviews",
-          "tableTo": "users",
-          "columnsFrom": ["reviewee_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "trainers",
+          "columnsFrom": [
+            "reviewee_id"
+          ],
+          "columnsTo": [
+            "trainer_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -270,21 +416,29 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "sessions_trainer_id_users_user_id_fk": {
-          "name": "sessions_trainer_id_users_user_id_fk",
+        "sessions_trainer_id_trainers_trainer_id_fk": {
+          "name": "sessions_trainer_id_trainers_trainer_id_fk",
           "tableFrom": "sessions",
-          "tableTo": "users",
-          "columnsFrom": ["trainer_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "trainers",
+          "columnsFrom": [
+            "trainer_id"
+          ],
+          "columnsTo": [
+            "trainer_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "sessions_client_id_users_user_id_fk": {
-          "name": "sessions_client_id_users_user_id_fk",
+        "sessions_client_id_clients_client_id_fk": {
+          "name": "sessions_client_id_clients_client_id_fk",
           "tableFrom": "sessions",
-          "tableTo": "users",
-          "columnsFrom": ["client_id"],
-          "columnsTo": ["user_id"],
+          "tableTo": "clients",
+          "columnsFrom": [
+            "client_id"
+          ],
+          "columnsTo": [
+            "client_id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -295,18 +449,18 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.users": {
-      "name": "users",
+    "public.trainers": {
+      "name": "trainers",
       "schema": "",
       "columns": {
-        "user_id": {
-          "name": "user_id",
+        "trainer_id": {
+          "name": "trainer_id",
           "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "identity": {
             "type": "always",
-            "name": "users_user_id_seq",
+            "name": "trainers_trainer_id_seq",
             "schema": "public",
             "increment": "1",
             "startWith": "1",
@@ -322,51 +476,27 @@
           "primaryKey": false,
           "notNull": true
         },
-        "age": {
-          "name": "age",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
         "email": {
           "name": "email",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "role": {
-          "name": "role",
-          "type": "text",
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "weight": {
-          "name": "weight",
+        "specialization": {
+          "name": "specialization",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "experience_years": {
+          "name": "experience_years",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "height": {
-          "name": "height",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "fitness_level": {
-          "name": "fitness_level",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "dietary_preferences": {
-          "name": "dietary_preferences",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "training_preferences": {
-          "name": "training_preferences",
-          "type": "text",
           "primaryKey": false,
           "notNull": false
         }
@@ -375,10 +505,12 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "users_email_unique": {
-          "name": "users_email_unique",
+        "trainers_email_unique": {
+          "name": "trainers_email_unique",
           "nullsNotDistinct": false,
-          "columns": ["email"]
+          "columns": [
+            "email"
+          ]
         }
       },
       "policies": {},

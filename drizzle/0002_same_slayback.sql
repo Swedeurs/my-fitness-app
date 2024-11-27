@@ -1,1 +1,0 @@
-ALTER TABLE "users" ADD COLUMN "assigned_trainer_id" integer;
