@@ -2,8 +2,8 @@
 import { useUser } from "@/hooks/use-user";
 import { Trainer } from "@/types";
 import { useEffect, useState } from "react";
-import Chat from "./chat";
 import { SideNav } from "./sidenav";
+import Chat from "./chat";
 
 export default function ClientDashboard() {
   const { user } = useUser();
