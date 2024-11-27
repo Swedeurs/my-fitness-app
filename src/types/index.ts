@@ -18,7 +18,7 @@ export type Trainer = {
   email: string;
   specialization: string;
   experienceYears?: number;
-  role: UserRole; 
+  role: "trainer";
 };
 
 // Client Type
@@ -33,7 +33,7 @@ export type Client = {
   dietaryPreferences?: string;
   trainingPreferences?: string;
   assignedTrainerId?: number;
-  role: UserRole; 
+  role: "client";
 };
 
 // ClientInsert for inserting new clients into the database
