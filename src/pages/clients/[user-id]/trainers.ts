@@ -1,9 +1,9 @@
 // /pages/api/clients/[userId]/trainer.ts
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { db } from "../../../lib/db";
-import { sessionsTable, usersTable } from "../../../lib/schema";
 import { eq } from "drizzle-orm";
+import { clientsTable, sessionsTable } from "@/lib/schema";
+import { db } from "@/lib/db";
 
 // API handler for getting trainer info for a given userId
 export default async function handler(
@@ -41,8 +41,8 @@ export default async function handler(
     const trainerId = session[0].trainerId;
     const trainer = await db
       .select()
-      .from(usersTable)
-      .where(eq(usersTable.id, trainerId))
+      .from(clientsTable)
+      .where(eq(clientsTable.id, trainerId))
       .limit(1);
 
     if (!trainer || trainer.length === 0) {
