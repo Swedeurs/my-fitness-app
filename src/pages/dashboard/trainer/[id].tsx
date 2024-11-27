@@ -5,7 +5,7 @@ import Chat from "@/app/components/chat";
 import { Client } from "@/types";
 
 const TrainerDashboard = () => {
-  const { user } = useUser(); // user can be null
+  const { user } = useUser(); 
   const [clients, setClients] = useState<Client[]>([]);
   const [unassignedClients, setUnassignedClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
@@ -14,10 +14,10 @@ const TrainerDashboard = () => {
 
   useEffect(() => {
     if (user) {
-      // Check if user is not null
+
       const fetchClients = async () => {
         try {
-          const response = await fetch(`/api/trainers/${user.id}/clients`); // Pass user.id here
+          const response = await fetch(`/api/trainers/${user.id}/clients`);
           if (!response.ok) {
             if (response.status === 404) {
               setClients([]);
