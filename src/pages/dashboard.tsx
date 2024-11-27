@@ -2,6 +2,7 @@ import { useUser } from "@/hooks/use-user";
 import TrainerDashboard from "@/app/components/trainer-dashboard";
 import ClientDashboard from "@/app/components/client-dashboard";
 
+
 export default function Dashboard() {
   const { user } = useUser();
 
