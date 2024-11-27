@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUser } from "@/hooks/use-user"; // Custom hook to handle user context
+import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -12,7 +12,7 @@ const ClientLogin = () => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await fetch("/api/login/client", {
         method: "POST",
@@ -34,7 +34,7 @@ const ClientLogin = () => {
         role: "client",
       });
 
-      router.push(`/dashboard/client/${data.id}`); // Redirect to client dashboard
+      router.push(`/dashboard/client/${data.id}`);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
@@ -42,7 +42,7 @@ const ClientLogin = () => {
         setError("An unexpected error occurred.");
       }
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -53,10 +53,9 @@ const ClientLogin = () => {
           Client Login
         </h1>
 
-        {/* Error Display */}
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
-        {/* Input Fields */}
+
         <div className="w-full mb-6">
           <input
             type="email"
@@ -74,7 +73,7 @@ const ClientLogin = () => {
           />
         </div>
 
-        {/* Login Button */}
+
         <button
           onClick={handleLogin}
           disabled={loading}
@@ -83,7 +82,7 @@ const ClientLogin = () => {
           {loading ? "Logging in..." : "Login as Client"}
         </button>
 
-        {/* Link to sign-up page */}
+
         <div className="mt-4">
           <Link href="/signup/client">
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition transform hover:-translate-y-1">

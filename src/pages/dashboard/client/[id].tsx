@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useUser } from "@/hooks/use-user";  /
+import { useUser } from "@/hooks/use-user"; 
 import { SideNav } from "@/app/components/sidenav";
 import Chat from "@/app/components/chat";
 import { Client, Trainer } from "@/types";

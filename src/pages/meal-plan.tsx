@@ -12,10 +12,10 @@ export default function MealPlanPage() {
         color: "#e0e0e0",
       }}
     >
-      {/* Side Navigation */}
+
       <SideNav />
 
-      {/* Main Content */}
+
       <div
         style={{
           flex: "1",
