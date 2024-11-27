@@ -16,7 +16,6 @@ export type Trainer = {
   id: number;
   name: string;
   email: string;
-  specialization: string;
   experienceYears?: number;
   role: "trainer";
 };
