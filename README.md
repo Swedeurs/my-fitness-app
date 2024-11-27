@@ -58,7 +58,7 @@ Instant messaging between clients and trainers.
 ### Steps:
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/fitness-app.git
+    git clone https://github.com/Swederus/fitness-app.git
     ```
 2. Navigate to the project directory:
     ```bash
