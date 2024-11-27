@@ -1,21 +1,24 @@
 import { User, UserContextType } from "@/types";
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect } from "react";
+
+
+
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      setUser(JSON.parse(userData));
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = (user: User) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   const logout = () => {
