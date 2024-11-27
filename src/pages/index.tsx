@@ -12,13 +12,13 @@ export default function Home() {
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
           <Link
-            href="/clients"
+            href="/login/client"  // Make sure this is the correct path for client login
             className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-700 transition shadow-md transform hover:-translate-y-1"
           >
             I am a Client
           </Link>
           <Link
-            href="/trainer"
+            href="/login/trainer"  // Make sure this is the correct path for trainer login
             className="inline-block bg-green-500 text-black px-6 py-3 rounded-lg hover:bg-green-600 transition shadow-md transform hover:-translate-y-1"
           >
             I am a Trainer
