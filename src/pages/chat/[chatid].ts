@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { chatMessagesTable } from "@/lib/schema";
 import { eq, or } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { chatId } = req.query;
 
   // Validate chatId
@@ -21,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         .where(
           or(
             eq(chatMessagesTable.senderId, userId1),
-            eq(chatMessagesTable.receiverId, userId2)
-          )
+            eq(chatMessagesTable.receiverId, userId2),
+          ),
         );
 
       return res.status(200).json(messages);

@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { clientsTable } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === "POST") {
     const { trainerId, clientId } = req.body;
 

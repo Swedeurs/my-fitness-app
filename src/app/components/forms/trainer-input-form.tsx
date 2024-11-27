@@ -23,7 +23,9 @@ export default function TrainerInputForm({ onSubmit }: TrainerInputFormProps) {
 
   return (
     <div className="p-8 bg-gray-800 rounded-lg shadow-md max-w-md mx-auto">
-      <h2 className="text-3xl text-green-500 font-bold mb-6">Trainer Information</h2>
+      <h2 className="text-3xl text-green-500 font-bold mb-6">
+        Trainer Information
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block mb-2 text-lg text-gray-200">Name</label>
@@ -46,7 +48,9 @@ export default function TrainerInputForm({ onSubmit }: TrainerInputFormProps) {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg text-gray-200">Specialization</label>
+          <label className="block mb-2 text-lg text-gray-200">
+            Specialization
+          </label>
           <input
             type="text"
             value={specialization}
@@ -56,7 +60,9 @@ export default function TrainerInputForm({ onSubmit }: TrainerInputFormProps) {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg text-gray-200">Experience (years)</label>
+          <label className="block mb-2 text-lg text-gray-200">
+            Experience (years)
+          </label>
           <input
             type="text"
             value={experience}

@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { trainersTable } from "@/lib/schema";
 import bcrypt from "bcryptjs";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
@@ -12,7 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { name, email, password, specialization, experienceYears } = req.body;
 
   if (!name || !email || !password) {
-    return res.status(400).json({ error: "Name, email, and password are required" });
+    return res
+      .status(400)
+      .json({ error: "Name, email, and password are required" });
   }
 
   try {

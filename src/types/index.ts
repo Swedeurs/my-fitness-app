@@ -10,7 +10,6 @@ export type WorkoutPlanItem = {
 
 export type UserRole = "client" | "trainer";
 
-
 // Trainer Type
 export type Trainer = {
   id: number;

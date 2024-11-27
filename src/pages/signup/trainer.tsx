@@ -56,9 +56,7 @@ export default function TrainerSignUp() {
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-md w-96"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Trainer Sign-Up
-        </h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Trainer Sign-Up</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         {success && <p className="text-green-500 text-sm mb-4">{success}</p>}
         <div className="mb-4">

@@ -57,12 +57,8 @@
           "name": "chat_messages_sender_id_clients_client_id_fk",
           "tableFrom": "chat_messages",
           "tableTo": "clients",
-          "columnsFrom": [
-            "sender_id"
-          ],
-          "columnsTo": [
-            "client_id"
-          ],
+          "columnsFrom": ["sender_id"],
+          "columnsTo": ["client_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -70,12 +66,8 @@
           "name": "chat_messages_receiver_id_trainers_trainer_id_fk",
           "tableFrom": "chat_messages",
           "tableTo": "trainers",
-          "columnsFrom": [
-            "receiver_id"
-          ],
-          "columnsTo": [
-            "trainer_id"
-          ],
+          "columnsFrom": ["receiver_id"],
+          "columnsTo": ["trainer_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -174,12 +166,8 @@
           "name": "clients_assigned_trainer_id_trainers_trainer_id_fk",
           "tableFrom": "clients",
           "tableTo": "trainers",
-          "columnsFrom": [
-            "assigned_trainer_id"
-          ],
-          "columnsTo": [
-            "trainer_id"
-          ],
+          "columnsFrom": ["assigned_trainer_id"],
+          "columnsTo": ["trainer_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -189,9 +177,7 @@
         "clients_email_unique": {
           "name": "clients_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -245,12 +231,8 @@
           "name": "notifications_user_id_clients_client_id_fk",
           "tableFrom": "notifications",
           "tableTo": "clients",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "client_id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["client_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -326,12 +308,8 @@
           "name": "reviews_session_id_sessions_session_id_fk",
           "tableFrom": "reviews",
           "tableTo": "sessions",
-          "columnsFrom": [
-            "session_id"
-          ],
-          "columnsTo": [
-            "session_id"
-          ],
+          "columnsFrom": ["session_id"],
+          "columnsTo": ["session_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -339,12 +317,8 @@
           "name": "reviews_reviewer_id_clients_client_id_fk",
           "tableFrom": "reviews",
           "tableTo": "clients",
-          "columnsFrom": [
-            "reviewer_id"
-          ],
-          "columnsTo": [
-            "client_id"
-          ],
+          "columnsFrom": ["reviewer_id"],
+          "columnsTo": ["client_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -352,12 +326,8 @@
           "name": "reviews_reviewee_id_trainers_trainer_id_fk",
           "tableFrom": "reviews",
           "tableTo": "trainers",
-          "columnsFrom": [
-            "reviewee_id"
-          ],
-          "columnsTo": [
-            "trainer_id"
-          ],
+          "columnsFrom": ["reviewee_id"],
+          "columnsTo": ["trainer_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -420,12 +390,8 @@
           "name": "sessions_trainer_id_trainers_trainer_id_fk",
           "tableFrom": "sessions",
           "tableTo": "trainers",
-          "columnsFrom": [
-            "trainer_id"
-          ],
-          "columnsTo": [
-            "trainer_id"
-          ],
+          "columnsFrom": ["trainer_id"],
+          "columnsTo": ["trainer_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -433,12 +399,8 @@
           "name": "sessions_client_id_clients_client_id_fk",
           "tableFrom": "sessions",
           "tableTo": "clients",
-          "columnsFrom": [
-            "client_id"
-          ],
-          "columnsTo": [
-            "client_id"
-          ],
+          "columnsFrom": ["client_id"],
+          "columnsTo": ["client_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -508,9 +470,7 @@
         "trainers_email_unique": {
           "name": "trainers_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},

@@ -22,7 +22,9 @@ export default function TrainerDashboard() {
             if (response.status === 404) {
               setClients([]);
             } else {
-              throw new Error(`Failed to fetch clients. Status: ${response.status}`);
+              throw new Error(
+                `Failed to fetch clients. Status: ${response.status}`,
+              );
             }
           } else {
             const data = await response.json();
@@ -48,7 +50,9 @@ export default function TrainerDashboard() {
       try {
         const response = await fetch("/api/trainers/unassigned-clients");
         if (!response.ok) {
-          throw new Error(`Failed to fetch unassigned clients. Status: ${response.status}`);
+          throw new Error(
+            `Failed to fetch unassigned clients. Status: ${response.status}`,
+          );
         }
         const data = await response.json();
         setUnassignedClients(data);
@@ -69,7 +73,7 @@ export default function TrainerDashboard() {
   // Assign client to trainer
   const assignClient = async (clientId: number) => {
     if (!user) return;
-  
+
     try {
       setFeedback("Assigning client...");
       const response = await fetch(`/api/assign-client`, {
@@ -80,38 +84,69 @@ export default function TrainerDashboard() {
           trainerId: user.id,
         }),
       });
-  
+
       if (!response.ok) {
         const errorDetails = await response.json();
-        throw new Error(errorDetails.message || `Failed to assign client: ${response.status}`);
+        throw new Error(
+          errorDetails.message || `Failed to assign client: ${response.status}`,
+        );
       }
-  
-      setUnassignedClients((prev) => prev.filter((client) => client.id !== clientId));
-      const assignedClient = unassignedClients.find((client) => client.id === clientId);
+
+      setUnassignedClients((prev) =>
+        prev.filter((client) => client.id !== clientId),
+      );
+      const assignedClient = unassignedClients.find(
+        (client) => client.id === clientId,
+      );
       if (assignedClient) {
         setClients((prev) => [...prev, assignedClient]);
       }
       setFeedback("Client successfully assigned!");
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
+      const errorMessage =
+        error instanceof Error ? error.message : "An unknown error occurred.";
       console.error("Failed to assign client:", errorMessage);
       setError(errorMessage);
     } finally {
       setTimeout(() => setFeedback(null), 3000);
     }
   };
-  
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e0e0e0" }}>
+    <div
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        backgroundColor: "#0a0a0a",
+        color: "#e0e0e0",
+      }}
+    >
       {/* Side Navigation for Trainer */}
       <TrainerSideNav />
 
-      <div style={{ flex: "1", padding: "2.5rem", maxWidth: "96rem", margin: "0 auto" }}>
-        <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>My Clients</h2>
+      <div
+        style={{
+          flex: "1",
+          padding: "2.5rem",
+          maxWidth: "96rem",
+          margin: "0 auto",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "2.25rem",
+            fontWeight: "bold",
+            marginBottom: "1.5rem",
+            color: "#00ff66",
+          }}
+        >
+          My Clients
+        </h2>
 
         {/* Feedback message */}
-        {feedback && <p style={{ color: "#00ff66", marginBottom: "1rem" }}>{feedback}</p>}
+        {feedback && (
+          <p style={{ color: "#00ff66", marginBottom: "1rem" }}>{feedback}</p>
+        )}
 
         {/* Error message display */}
         {error && <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
@@ -132,8 +167,12 @@ export default function TrainerDashboard() {
                   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{client.name}</p>
-                <p style={{ color: "#999999", marginBottom: "1rem" }}>{client.email}</p>
+                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                  {client.name}
+                </p>
+                <p style={{ color: "#999999", marginBottom: "1rem" }}>
+                  {client.email}
+                </p>
                 <button
                   onClick={() => setSelectedClient(client)}
                   style={{
@@ -146,7 +185,9 @@ export default function TrainerDashboard() {
                     transition: "background-color 0.3s",
                   }}
                 >
-                  {selectedClient && selectedClient.id === client.id ? "Close Chat" : `Chat with ${client.name}`}
+                  {selectedClient && selectedClient.id === client.id
+                    ? "Close Chat"
+                    : `Chat with ${client.name}`}
                 </button>
               </div>
             ))
@@ -154,7 +195,16 @@ export default function TrainerDashboard() {
         </div>
 
         {/* Display the list of unassigned clients */}
-        <h2 style={{ fontSize: "2.25rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>Unassigned Clients</h2>
+        <h2
+          style={{
+            fontSize: "2.25rem",
+            fontWeight: "bold",
+            marginBottom: "1.5rem",
+            color: "#00ff66",
+          }}
+        >
+          Unassigned Clients
+        </h2>
         <div className="grid gap-6">
           {unassignedClients.length === 0 ? (
             <p style={{ color: "#e0e0e0" }}>No unassigned clients available.</p>
@@ -170,8 +220,12 @@ export default function TrainerDashboard() {
                   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{client.name}</p>
-                <p style={{ color: "#999999", marginBottom: "1rem" }}>{client.email}</p>
+                <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
+                  {client.name}
+                </p>
+                <p style={{ color: "#999999", marginBottom: "1rem" }}>
+                  {client.email}
+                </p>
                 <button
                   onClick={() => assignClient(client.id)}
                   style={{
@@ -194,7 +248,14 @@ export default function TrainerDashboard() {
         {/* Chat Section */}
         {selectedClient && (
           <div style={{ marginTop: "2.5rem" }}>
-            <h2 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem", color: "#00ff66" }}>
+            <h2
+              style={{
+                fontSize: "2rem",
+                fontWeight: "bold",
+                marginBottom: "1.5rem",
+                color: "#00ff66",
+              }}
+            >
               Chat with {selectedClient.name}
             </h2>
             <Chat otherUserId={selectedClient.id} />

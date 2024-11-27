@@ -5,7 +5,6 @@ export default function Dashboard() {
   const { user } = useUser();
   const router = useRouter();
 
-
   if (user) {
     if (user.role === "trainer") {
       router.replace(`/dashboard/trainer/${user.id}`);

@@ -1,10 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { eq } from "drizzle-orm"; 
-import { sessionsTable, trainersTable } from "@/lib/schema"; 
-import { db } from "@/lib/db"; 
+import { eq } from "drizzle-orm";
+import { sessionsTable, trainersTable } from "@/lib/schema";
+import { db } from "@/lib/db";
 
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { userId } = req.query;
 
   if (req.method !== "GET") {
@@ -13,18 +15,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return;
   }
 
-
   if (!userId || typeof userId !== "string") {
     res.status(400).json({ error: "Invalid user ID" });
     return;
   }
 
   try {
-   
     const session = await db
       .select()
       .from(sessionsTable)
-      .where(eq(sessionsTable.clientId, parseInt(userId, 10)))  
+      .where(eq(sessionsTable.clientId, parseInt(userId, 10)))
       .limit(1);
 
     if (!session || session.length === 0) {
@@ -32,7 +32,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(404).json({ error: "No trainer assigned to this client." });
       return;
     }
-
 
     const trainerId = session[0].trainerId;
     console.log(`Trainer ID from session: ${trainerId}`);

@@ -17,7 +17,9 @@ export const clientsTable = pgTable("clients", {
   fitnessLevel: text("fitness_level"),
   dietaryPreferences: text("dietary_preferences"),
   trainingPreferences: text("training_preferences"),
-  assignedTrainerId: integer("assigned_trainer_id").references(() => trainersTable.id),
+  assignedTrainerId: integer("assigned_trainer_id").references(
+    () => trainersTable.id,
+  ),
 });
 
 export const trainersTable = pgTable("trainers", {
@@ -28,7 +30,6 @@ export const trainersTable = pgTable("trainers", {
   specialization: text("specialization"),
   experienceYears: integer("experience_years"),
 });
-
 
 // Sessions Table
 export const sessionsTable = pgTable("sessions", {
@@ -44,8 +45,8 @@ export const sessionsTable = pgTable("sessions", {
 // Chat Messages Table
 export const chatMessagesTable = pgTable("chat_messages", {
   id: integer("message_id").primaryKey().generatedAlwaysAsIdentity(),
-  senderId: integer("sender_id").references(() => clientsTable.id), 
-  receiverId: integer("receiver_id").references(() => trainersTable.id), 
+  senderId: integer("sender_id").references(() => clientsTable.id),
+  receiverId: integer("receiver_id").references(() => trainersTable.id),
   message: text("message").notNull(),
   timestamp: timestamp("timestamp").defaultNow(),
 });

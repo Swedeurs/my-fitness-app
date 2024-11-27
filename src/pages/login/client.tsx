@@ -49,7 +49,9 @@ const ClientLogin = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-green-800 via-green-900 to-black px-4">
       <div className="bg-gray-900 rounded-lg shadow-lg p-10 max-w-lg w-full text-center">
-        <h1 className="text-5xl font-extrabold text-green-400 mb-8">Client Login</h1>
+        <h1 className="text-5xl font-extrabold text-green-400 mb-8">
+          Client Login
+        </h1>
 
         {/* Error Display */}
         {error && <p className="text-red-500 mb-4">{error}</p>}

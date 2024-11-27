@@ -2,7 +2,11 @@
 import { useState } from "react";
 
 interface UserInputFormProps {
-  onSubmit: (formData: { name: string; email: string; fitnessGoals: string }) => void;
+  onSubmit: (formData: {
+    name: string;
+    email: string;
+    fitnessGoals: string;
+  }) => void;
 }
 
 export default function ClientInputForm({ onSubmit }: UserInputFormProps) {
@@ -17,7 +21,9 @@ export default function ClientInputForm({ onSubmit }: UserInputFormProps) {
 
   return (
     <div className="p-8 bg-gray-800 rounded-lg shadow-md max-w-md mx-auto">
-      <h2 className="text-3xl text-green-500 font-bold mb-6">Client Information</h2>
+      <h2 className="text-3xl text-green-500 font-bold mb-6">
+        Client Information
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block mb-2 text-lg text-gray-200">Name</label>
@@ -40,7 +46,9 @@ export default function ClientInputForm({ onSubmit }: UserInputFormProps) {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg text-gray-200">Fitness Goals</label>
+          <label className="block mb-2 text-lg text-gray-200">
+            Fitness Goals
+          </label>
           <textarea
             value={fitnessGoals}
             onChange={(e) => setFitnessGoals(e.target.value)}

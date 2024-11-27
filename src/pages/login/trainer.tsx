@@ -45,7 +45,9 @@ const TrainerLogin = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-800 via-blue-900 to-black px-4">
       <div className="bg-gray-900 rounded-lg shadow-lg p-10 max-w-lg w-full text-center">
-        <h1 className="text-5xl font-extrabold text-blue-400 mb-8">Trainer Login</h1>
+        <h1 className="text-5xl font-extrabold text-blue-400 mb-8">
+          Trainer Login
+        </h1>
 
         {/* Error Display */}
         {error && <p className="text-red-500 mb-4">{error}</p>}
