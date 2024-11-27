@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUser } from "@/hooks/use-user"; // Custom hook to handle user context
+import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -12,7 +12,7 @@ const TrainerLogin = () => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await fetch("/api/login/trainer", {
         method: "POST",
@@ -34,11 +34,11 @@ const TrainerLogin = () => {
         role: "trainer",
       });
 
-      router.push(`/dashboard/trainer/${data.id}`); // Redirect to trainer dashboard
+      router.push(`/dashboard/trainer/${data.id}`);
     } catch (error) {
       setError(error.message || "An error occurred");
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -49,10 +49,10 @@ const TrainerLogin = () => {
           Trainer Login
         </h1>
 
-        {/* Error Display */}
+
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
-        {/* Input Fields */}
+
         <div className="w-full mb-6">
           <input
             type="email"
@@ -70,7 +70,6 @@ const TrainerLogin = () => {
           />
         </div>
 
-        {/* Login Button */}
         <button
           onClick={handleLogin}
           disabled={loading}
@@ -79,7 +78,6 @@ const TrainerLogin = () => {
           {loading ? "Logging in..." : "Login as Trainer"}
         </button>
 
-        {/* Link to sign-up page */}
         <div className="mt-4">
           <Link href="/signup/trainer">
             <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition transform hover:-translate-y-1">
