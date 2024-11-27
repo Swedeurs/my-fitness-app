@@ -1,26 +1,26 @@
+import { useRouter } from "next/router";
 import { useUser } from "@/hooks/use-user";
-import TrainerDashboard from "@/app/components/trainer-dashboard";
-import ClientDashboard from "@/app/components/client-dashboard";
-
 
 export default function Dashboard() {
   const { user } = useUser();
+  const router = useRouter();
+
+
+  if (user) {
+    if (user.role === "trainer") {
+      router.replace(`/dashboard/trainer/${user.id}`);
+      return null;
+    } else if (user.role === "client") {
+      router.replace(`/dashboard/client/${user.id}`);
+      return null;
+    }
+  }
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-6">Dashboard</h1>
-      {user ? (
-        user.role === "trainer" ? (
-          <TrainerDashboard />
-        ) : (
-          <ClientDashboard />
-        )
-      ) : (
-        // Render something in the case where the user is null
-        <p className="text-lg text-gray-500">
-          User information is not available at the moment. Please log in.
-        </p>
-      )}
+      <p className="text-lg text-gray-500">
+        User information is not available at the moment. Please log in.
+      </p>
     </div>
   );
 }
