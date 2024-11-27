@@ -1,6 +1,6 @@
 # Fitness App Dashboard
 
-![Fitness App Logo](path/to/your/logo.png) <!-- Add the actual path to your logo image -->
+![Fitness App Logo] (public/my-fitness-app-logo.webp)<!-- Add the actual path to your logo image -->
 
 ## Table of Contents
 - [Project Overview](#project-overview)
