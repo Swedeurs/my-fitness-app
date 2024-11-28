@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 export default function MealPlan() {
-  // Mock meal plan data with meal types (Breakfast, Lunch, Dinner)
   const meals = [
     {
       day: "Monday",
@@ -55,7 +54,7 @@ export default function MealPlan() {
   };
   return (
     <div className="border rounded-lg p-6 bg-gray-800 shadow-md">
-      <h3 className="text-3xl font-semibold mb-4 text-green-400">Meal Plans</h3>
+      <h3 className="text-5xl font-semibold mb-4 text-blue-500">Meal Plans</h3>
       <div className="space-y-6">
         {meals.map((mealData, index) => (
           <div key={index}>

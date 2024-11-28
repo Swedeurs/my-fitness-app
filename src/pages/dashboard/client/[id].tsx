@@ -74,7 +74,7 @@ const ClientDashboard = () => {
             <p className="text-gray-500 mb-4">{trainer.email}</p>
             <button
               onClick={() => setShowChat(!showChat)}
-              className="bg-green-400 text-black py-2 px-6 rounded-md transition duration-300 hover:bg-green-500"
+              className="bg-blue-400 text-black py-2 px-6 rounded-md transition duration-300 hover:bg-green-500"
             >
               {showChat ? "Close Chat" : "Chat with Trainer"}
             </button>

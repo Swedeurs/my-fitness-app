@@ -24,16 +24,7 @@ export default function WorkoutPlanPage() {
           margin: "0 auto",
         }}
       >
-        <h1
-          style={{
-            fontSize: "2.25rem",
-            fontWeight: "bold",
-            marginBottom: "1.5rem",
-            color: "#00ff66",
-          }}
-        >
-          Workout Plan
-        </h1>
+
         <WorkoutPlan />
         <Link href="/dashboard"></Link>
       </div>

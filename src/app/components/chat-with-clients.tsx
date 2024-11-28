@@ -1,9 +1,8 @@
-// /pages/chat-with-clients.tsx
 import Chat from "@/app/components/chat";
 import { TrainerSideNav } from "@/app/components/trainer-sidnav";
 
 export default function ChatWithClientsPage() {
-  const otherUserId = 1; // Replace with logic to dynamically select a client to chat with
+  const otherUserId = 1; 
 
   return (
     <div

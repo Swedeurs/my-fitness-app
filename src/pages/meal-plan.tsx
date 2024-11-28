@@ -24,16 +24,6 @@ export default function MealPlanPage() {
           margin: "0 auto",
         }}
       >
-        <h1
-          style={{
-            fontSize: "2.25rem",
-            fontWeight: "bold",
-            marginBottom: "1.5rem",
-            color: "#00ff66",
-          }}
-        >
-          Meal Plan
-        </h1>
         <MealPlan />
         <Link href="/dashboard"></Link>
       </div>

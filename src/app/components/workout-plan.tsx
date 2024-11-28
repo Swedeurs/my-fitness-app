@@ -125,7 +125,7 @@ export default function WorkoutPlan() {
 
   return (
     <div className="border rounded-lg p-6 bg-gray-800 shadow-md">
-      <h3 className="text-3xl font-semibold mb-4 text-green-400">Workout Plans</h3>
+      <h3 className="text-5xl font-semibold mb-4 text-blue-500">Workout Plans</h3>
       <div className="space-y-6">
         {workouts.map((workout, index) => (
           <div key={index}>

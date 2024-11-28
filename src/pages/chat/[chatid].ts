@@ -9,7 +9,6 @@ export default async function handler(
 ) {
   const { chatId } = req.query;
 
-  // Validate chatId
   if (!chatId || typeof chatId !== "string") {
     return res.status(400).json({ error: "Invalid chatId" });
   }
@@ -45,7 +44,7 @@ export default async function handler(
         senderId,
         receiverId,
         message,
-        timestamp: new Date(), // Use a Date object instead of a string
+        timestamp: new Date(),
       });
       return res.status(201).json({ message: "Message sent successfully." });
     } catch (error) {
