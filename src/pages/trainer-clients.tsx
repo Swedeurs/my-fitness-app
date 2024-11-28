@@ -7,6 +7,7 @@ export default function TrainerClientsPage() {
   const { user } = useUser();
   const [clients, setClients] = useState<Client[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // New loading state
 
   useEffect(() => {
     if (user) {
@@ -14,15 +15,15 @@ export default function TrainerClientsPage() {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
           if (!response.ok) {
-            throw new Error(
-              `Failed to fetch clients. Status: ${response.status}`,
-            );
+            throw new Error(`Failed to fetch clients. Status: ${response.status}`);
           }
           const data = await response.json();
           setClients(data);
         } catch (error) {
           console.error("Failed to fetch clients:", error);
           setError("Failed to fetch clients.");
+        } finally {
+          setLoading(false); // Set loading to false after data is fetched
         }
       };
 
@@ -58,12 +59,24 @@ export default function TrainerClientsPage() {
         >
           My Clients
         </h1>
+
+        {/* Show loading spinner or message while fetching clients */}
+        {loading && (
+          <p style={{ color: "#e0e0e0" }}>Loading clients...</p>
+        )}
+
+        {/* Show error message if fetching clients failed */}
         {error && (
           <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
         )}
-        {clients.length === 0 ? (
+
+        {/* Show message if no clients are found */}
+        {clients.length === 0 && !loading && !error && (
           <p style={{ color: "#e0e0e0" }}>No clients assigned yet.</p>
-        ) : (
+        )}
+
+        {/* Display the client list if there are clients */}
+        {clients.length > 0 && !loading && !error && (
           clients.map((client) => (
             <div
               key={client.id}

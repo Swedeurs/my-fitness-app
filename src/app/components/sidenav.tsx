@@ -12,93 +12,42 @@ export function SideNav() {
   };
 
   return (
-    <aside
-      style={{
-        width: "16rem",
-        backgroundColor: "#1a1a1a", // Darker grey for modern look
-        color: "#ffffff", // White text for contrast
-        padding: "1.5rem",
-        minHeight: "100vh",
-      }}
+    <aside className="w-60 bg-gradient-to-b from-black to-gray-800 text-white p-6 min-h-screen shadow-lg"
+      
     >
-      <h2
-        style={{
-          fontSize: "1.875rem",
-          fontWeight: "bold",
-          marginBottom: "2.5rem",
-          color: "#00ff66", // Electric blue for title
-        }}
+      <h2 className="text-3xl font-semibold mb-6"
       >
         Dashboard
       </h2>
       <nav style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
         <Link
           href="/dashboard"
-          style={{
-            color: "#ffffff", // White for links
-            textDecoration: "none",
-            fontSize: "1.125rem",
-            fontWeight: "500",
-            transition: "color 0.3s",
-          }}
-          className="hover:text-blue-500"
-        >
+          className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">
           Home
         </Link>
         <Link
           href="/meal-plan"
-          style={{
-            color: "#ffffff", // White for links
-            textDecoration: "none",
-            fontSize: "1.125rem",
-            fontWeight: "500",
-            transition: "color 0.3s",
-          }}
-          className="hover:text-blue-500"
+className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
+
         >
           Meal Plan
         </Link>
         <Link
           href="/workout-plan"
-          style={{
-            color: "#ffffff", // White for links
-            textDecoration: "none",
-            fontSize: "1.125rem",
-            fontWeight: "500",
-            transition: "color 0.3s",
-          }}
-          className="hover:text-blue-500"
+          
+          className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
         >
           Workout Plan
         </Link>
         <Link
           href="/chat"
-          style={{
-            color: "#ffffff", // White for links
-            textDecoration: "none",
-            fontSize: "1.125rem",
-            fontWeight: "500",
-            transition: "color 0.3s",
-          }}
-          className="hover:text-blue-500"
+className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer"
         >
           Chat with Trainer
         </Link>
         <button
           onClick={handleLogout}
-          style={{
-            backgroundColor: "#00ff66", // Electric blue for the button
-            color: "#000000", // Black text for button contrast
-            padding: "0.75rem 1.5rem",
-            borderRadius: "0.375rem",
-            border: "none",
-            cursor: "pointer",
-            marginTop: "2rem",
-            fontSize: "1.125rem",
-            fontWeight: "600",
-            transition: "background-color 0.3s",
-          }}
-          className="hover:bg-blue-500"
+          className="bg-blue-500 text-black py-2 px-5 rounded-lg mt-8 hover:bg-blue-400 transition-colors duration-300 font-semibold"
         >
           Logout
         </button>

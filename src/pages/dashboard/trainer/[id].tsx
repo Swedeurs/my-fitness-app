@@ -66,13 +66,14 @@ const TrainerDashboard = () => {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-black shadow-md rounded-lg p-6">
       <TrainerSideNav />
 
-      <div className="flex-1 p-6 bg-black text-white">
-        <h1 className="text-4xl font-bold mb-6">
+      <div className="flex-1 p-10 max-w-screen-xl mx-auto text-white">
+        <h2 className="text-4xl font-bold mb-6">
           Trainer Dashboard - {user?.name}
-        </h1>
+        </h2>
+        
 
         {feedback && <p className="text-blue-400 mb-4">{feedback}</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}

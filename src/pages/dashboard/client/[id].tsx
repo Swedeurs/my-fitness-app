@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { useUser } from "@/hooks/use-user"; 
+import { useUser } from "@/hooks/use-user";
 import { SideNav } from "@/app/components/sidenav";
 import Chat from "@/app/components/chat";
-import Link from "next/link"; 
+import Link from "next/link";
 import { Client, Trainer } from "@/types";
 
 const ClientDashboard = () => {
-  const { user } = useUser(); 
+  const { user } = useUser();
   const [trainer, setTrainer] = useState<Trainer | null>(null);
-  const [client, setClient] = useState<Client | null>(null);  
+  const [client, setClient] = useState<Client | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState<boolean>(false);
 
-  const nextWorkoutDay = "Monday, 12th December"; 
-  const nextSession = "Thursday, 15th December"; 
+  const nextWorkoutDay = "Monday, 12th December";
+  const nextSession = "Thursday, 15th December";
 
   useEffect(() => {
     if (user) {
@@ -51,19 +51,21 @@ const ClientDashboard = () => {
   }, [user]);
 
   return (
-    <div className="flex min-h-screen bg-black text-gray-200">
+    <div className="flex min-h-screen bg-black shadow-md rounded-lg p-6">
       <SideNav />
 
       <main className="flex-1 p-10 max-w-screen-xl mx-auto">
-        <h2 className="text-4xl font-extrabold mb-8 text-green-400">
+        <h2 className="text-4xl font-extrabold mb-8 text-white">
           My Client Dashboard
         </h2>
+
         {client && (
-          <div className="text-lg font-bold mb-4">
-            <p>Welcome, {client.name}!</p>
+          <div className="text-lg text-white font-bold mb-4">
+            <p className="text-2xl font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">Welcome, {client.name}!</p>
             <p>Email: {client.email}</p>
           </div>
         )}
+
         {error && <div className="text-red-500 mb-4">{error}</div>}
 
         {trainer ? (
@@ -83,8 +85,10 @@ const ClientDashboard = () => {
             )}
           </div>
         ) : (
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-            <p className="text-xl font-bold text-gray-300 mb-4">No trainer assigned yet.</p>
+          <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-500">
+              No trainer assigned yet.
+            </h2>
             <p className="text-gray-500">
               Once a trainer is assigned, you will be able to see their information here and start chatting with them.
             </p>
@@ -92,12 +96,12 @@ const ClientDashboard = () => {
         )}
 
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-          <h3 className="text-xl font-bold text-green-400">Your Next Workout</h3>
-          <p className="text-gray-200">Next Workout Day: {nextWorkoutDay}</p>
+          <h3 className="text-2xl font-semibold mb-4 text-blue-500">Your Next Workout</h3>
+          <p className="text-2xl font-semibold mb-4 text-blue-500">Next Workout Day: {nextWorkoutDay}</p>
           <p className="text-gray-200">Next Workout with PT: {nextSession}</p>
 
           <Link href="/schedule" passHref>
-            <button className="bg-green-400 text-white py-3 px-6 rounded-md w-full mt-4 transition duration-300 hover:bg-green-500">
+            <button className="bg-blue-400 text-black py-3 px-6 rounded-md w-full mt-4 transition duration-300 hover:bg-blue-500">
               View My Schedule
             </button>
           </Link>

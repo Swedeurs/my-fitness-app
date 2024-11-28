@@ -3,7 +3,7 @@ import { useUser } from "@/hooks/use-user";
 import { useRouter } from "next/router";
 
 export function TrainerSideNav() {
-  const { logout } = useUser();
+  const { user, logout } = useUser();
   const router = useRouter();
 
   const handleLogout = () => {
@@ -16,16 +16,23 @@ export function TrainerSideNav() {
       <h2 className="text-3xl font-semibold mb-6">Trainer Dashboard</h2>
 
       <nav className="flex flex-col gap-4">
+        {/* Home Button */}
+        <Link href={`/dashboard/trainer/${user?.id}`}>
+          <p className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">
+            Home
+          </p>
+        </Link>
+
         {/* Chat with Clients Link */}
         <Link href="/chat-with-clients">
-          <p className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300">
+          <p className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">
             Chat with Clients
           </p>
         </Link>
 
         {/* Clients List Link */}
         <Link href="/trainer-clients">
-          <p className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300">
+          <p className="text-lg font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">
             Clients
           </p>
         </Link>
