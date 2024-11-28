@@ -87,21 +87,26 @@ const TrainerDashboard = () => {
               clients.map((client) => (
                 <li
                   key={client.id}
-                  className="p-4 mb-4 border-b hover:bg-gray-700"
+                  className="p-4 mb-4  hover:bg-gray-700"
                   style={{ borderBottom: "1px solid #00ffcc" }}
                 >
                   <div className="flex justify-between">
                     <span className="font-medium">{client.name}</span>
+                    <div className="flex">
                     <button
                       onClick={() => setSelectedClient(client)}
-                      className="bg-blue-500 text-black py-1 px-4 rounded hover:bg-blue-400"
+                      className=" flex items-center bg-blue-500 text-black py-1 px-4 rounded hover:bg-blue-400 h-10 "
                     >
                       {selectedClient && selectedClient.id === client.id
                         ? "Close Chat"
                         : `Chat with ${client.name}`}
                     </button>
+                    </div>
                   </div>
-                  <p className="text-gray-400">{client.email}</p>
+                  <p className="font-semibold text-gray-400 pb-1">{client.email}</p>
+                  <p className="font-semibold text-gray-400 py-1">{client.fitnessLevel}</p>
+                  <p className="font-semibold text-gray-400 py-1">{client.dietaryPreferences}</p>
+                  <p className="font-semibold text-gray-400 pt-1">{client.trainingPreferences}</p>
                 </li>
               ))
             ) : (
