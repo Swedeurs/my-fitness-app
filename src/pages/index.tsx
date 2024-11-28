@@ -12,7 +12,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
           <Link
-            href="/login/client" 
+            href="/login/client"
             className="inline-block bg-blue-500 text-black px-6 py-3 rounded-lg hover:bg-blue-600 transition shadow-md transform hover:-translate-y-1"
           >
             I am a Client

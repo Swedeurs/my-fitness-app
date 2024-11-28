@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "next/router"; 
+import { useRouter } from "next/router";
 
 export default function ClientSignUp() {
   const router = useRouter();
@@ -55,10 +55,7 @@ export default function ClientSignUp() {
         trainingPreferences: "",
       });
 
-
-      
       router.push("/login/client");
-
     } catch (error) {
       console.error("Error signing up:", error);
       setError("An unexpected error occurred. Please try again.");

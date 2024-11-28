@@ -5,7 +5,7 @@ import Chat from "@/app/components/chat";
 import { Client } from "@/types";
 
 const TrainerDashboard = () => {
-  const { user } = useUser(); 
+  const { user } = useUser();
   const [clients, setClients] = useState<Client[]>([]);
   const [unassignedClients, setUnassignedClients] = useState<Client[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
@@ -14,7 +14,6 @@ const TrainerDashboard = () => {
 
   useEffect(() => {
     if (user) {
-
       const fetchClients = async () => {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
@@ -73,7 +72,6 @@ const TrainerDashboard = () => {
         <h2 className="text-4xl font-bold mb-6">
           Trainer Dashboard - {user?.name}
         </h2>
-        
 
         {feedback && <p className="text-blue-400 mb-4">{feedback}</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -93,20 +91,28 @@ const TrainerDashboard = () => {
                   <div className="flex justify-between">
                     <span className="font-medium">{client.name}</span>
                     <div className="flex">
-                    <button
-                      onClick={() => setSelectedClient(client)}
-                      className=" flex items-center bg-blue-500 text-black py-1 px-4 rounded hover:bg-blue-400 h-10 "
-                    >
-                      {selectedClient && selectedClient.id === client.id
-                        ? "Close Chat"
-                        : `Chat with ${client.name}`}
-                    </button>
+                      <button
+                        onClick={() => setSelectedClient(client)}
+                        className=" flex items-center bg-blue-500 text-black py-1 px-4 rounded hover:bg-blue-400 h-10 "
+                      >
+                        {selectedClient && selectedClient.id === client.id
+                          ? "Close Chat"
+                          : `Chat with ${client.name}`}
+                      </button>
                     </div>
                   </div>
-                  <p className="font-semibold text-gray-400 pb-1">{client.email}</p>
-                  <p className="font-semibold text-gray-400 py-1">{client.fitnessLevel}</p>
-                  <p className="font-semibold text-gray-400 py-1">{client.dietaryPreferences}</p>
-                  <p className="font-semibold text-gray-400 pt-1">{client.trainingPreferences}</p>
+                  <p className="font-semibold text-gray-400 pb-1">
+                    {client.email}
+                  </p>
+                  <p className="font-semibold text-gray-400 py-1">
+                    {client.fitnessLevel}
+                  </p>
+                  <p className="font-semibold text-gray-400 py-1">
+                    {client.dietaryPreferences}
+                  </p>
+                  <p className="font-semibold text-gray-400 pt-1">
+                    {client.trainingPreferences}
+                  </p>
                 </li>
               ))
             ) : (

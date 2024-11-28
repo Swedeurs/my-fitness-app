@@ -12,9 +12,7 @@ export default function MealPlanPage() {
         color: "#e0e0e0",
       }}
     >
-
       <SideNav />
-
 
       <div
         style={{

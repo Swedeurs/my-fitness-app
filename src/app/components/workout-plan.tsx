@@ -9,24 +9,24 @@ export default function WorkoutPlan() {
         {
           type: "Cardio",
           exercise: "Running",
-          details: "Time: 30 mins, Speed: 6 mph"
+          details: "Time: 30 mins, Speed: 6 mph",
         },
         {
           type: "Strength Training",
           exercise: "Upper Body (Push-ups, Dumbbell Press)",
-          details: "Reps: 3 sets of 15, Weight: 20 lbs"
+          details: "Reps: 3 sets of 15, Weight: 20 lbs",
         },
         {
           type: "Strength Training",
           exercise: "Barbell Bench Press",
-          details: "Reps: 4 sets of 8, Weight: 135 lbs"
+          details: "Reps: 4 sets of 8, Weight: 135 lbs",
         },
         {
           type: "Strength Training",
           exercise: "Bicep Curls (Dumbbell)",
-          details: "Reps: 3 sets of 12, Weight: 15 lbs"
-        }
-      ]
+          details: "Reps: 3 sets of 12, Weight: 15 lbs",
+        },
+      ],
     },
     {
       day: "Tuesday",
@@ -34,9 +34,9 @@ export default function WorkoutPlan() {
         {
           type: "Yoga",
           exercise: "Flexibility and Core",
-          details: "Duration: 60 mins"
-        }
-      ]
+          details: "Duration: 60 mins",
+        },
+      ],
     },
     {
       day: "Wednesday",
@@ -44,19 +44,19 @@ export default function WorkoutPlan() {
         {
           type: "Cardio",
           exercise: "Cycling",
-          details: "Time: 45 mins, Intensity: Moderate"
+          details: "Time: 45 mins, Intensity: Moderate",
         },
         {
           type: "Strength Training",
           exercise: "Lower Body (Squats, Lunges)",
-          details: "Reps: 4 sets of 12, Weight: 40 lbs"
+          details: "Reps: 4 sets of 12, Weight: 40 lbs",
         },
         {
           type: "Strength Training",
           exercise: "Deadlift",
-          details: "Reps: 4 sets of 10, Weight: 185 lbs"
-        }
-      ]
+          details: "Reps: 4 sets of 10, Weight: 185 lbs",
+        },
+      ],
     },
     {
       day: "Thursday",
@@ -64,9 +64,9 @@ export default function WorkoutPlan() {
         {
           type: "Rest",
           exercise: "Rest Day or Light Walk",
-          details: "Duration: 20 mins walk"
-        }
-      ]
+          details: "Duration: 20 mins walk",
+        },
+      ],
     },
     {
       day: "Friday",
@@ -74,19 +74,19 @@ export default function WorkoutPlan() {
         {
           type: "HIIT",
           exercise: "Interval Training",
-          details: "Duration: 20 mins, Intensity: High"
+          details: "Duration: 20 mins, Intensity: High",
         },
         {
           type: "Strength Training",
           exercise: "Full Body (Deadlift, Rows)",
-          details: "Reps: 4 sets of 10, Weight: 60 lbs"
+          details: "Reps: 4 sets of 10, Weight: 60 lbs",
         },
         {
           type: "Strength Training",
           exercise: "Overhead Barbell Press",
-          details: "Reps: 3 sets of 8, Weight: 95 lbs"
-        }
-      ]
+          details: "Reps: 3 sets of 8, Weight: 95 lbs",
+        },
+      ],
     },
     {
       day: "Saturday",
@@ -94,9 +94,9 @@ export default function WorkoutPlan() {
         {
           type: "Swimming",
           exercise: "Endurance Swim",
-          details: "Duration: 30 mins"
-        }
-      ]
+          details: "Duration: 30 mins",
+        },
+      ],
     },
     {
       day: "Sunday",
@@ -104,10 +104,10 @@ export default function WorkoutPlan() {
         {
           type: "Rest",
           exercise: "Recovery Day",
-          details: "Rest and Recovery"
-        }
-      ]
-    }
+          details: "Rest and Recovery",
+        },
+      ],
+    },
   ];
 
   const [selectedExercise, setSelectedExercise] = useState<string | null>(null);
@@ -125,7 +125,9 @@ export default function WorkoutPlan() {
 
   return (
     <div className="border rounded-lg p-6 bg-gray-800 shadow-md">
-      <h3 className="text-5xl font-semibold mb-4 text-blue-500">Workout Plans</h3>
+      <h3 className="text-5xl font-semibold mb-4 text-blue-500">
+        Workout Plans
+      </h3>
       <div className="space-y-6">
         {workouts.map((workout, index) => (
           <div key={index}>
@@ -155,7 +157,9 @@ export default function WorkoutPlan() {
             className="bg-gray-700 p-6 rounded-lg w-96 max-w-lg"
             onClick={(e) => e.stopPropagation()} // Prevent the popup from closing when clicking inside
           >
-            <h4 className="text-xl font-semibold text-gray-200 mb-4">Exercise Details</h4>
+            <h4 className="text-xl font-semibold text-gray-200 mb-4">
+              Exercise Details
+            </h4>
             <p className="text-gray-300">{selectedExercise}</p>
             <button
               onClick={closeExercisePopup}

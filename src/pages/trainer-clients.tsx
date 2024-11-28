@@ -15,7 +15,9 @@ export default function TrainerClientsPage() {
         try {
           const response = await fetch(`/api/trainers/${user.id}/clients`);
           if (!response.ok) {
-            throw new Error(`Failed to fetch clients. Status: ${response.status}`);
+            throw new Error(
+              `Failed to fetch clients. Status: ${response.status}`,
+            );
           }
           const data = await response.json();
           setClients(data);
@@ -61,9 +63,7 @@ export default function TrainerClientsPage() {
         </h1>
 
         {/* Show loading spinner or message while fetching clients */}
-        {loading && (
-          <p style={{ color: "#e0e0e0" }}>Loading clients...</p>
-        )}
+        {loading && <p style={{ color: "#e0e0e0" }}>Loading clients...</p>}
 
         {/* Show error message if fetching clients failed */}
         {error && (
@@ -76,7 +76,9 @@ export default function TrainerClientsPage() {
         )}
 
         {/* Display the client list if there are clients */}
-        {clients.length > 0 && !loading && !error && (
+        {clients.length > 0 &&
+          !loading &&
+          !error &&
           clients.map((client) => (
             <div
               key={client.id}
@@ -93,8 +95,7 @@ export default function TrainerClientsPage() {
               </p>
               <p style={{ color: "#999999" }}>{client.email}</p>
             </div>
-          ))
-        )}
+          ))}
       </main>
     </div>
   );

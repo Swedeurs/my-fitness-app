@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useUser } from "@/hooks/use-user"; 
-import { useRouter } from "next/router"; 
-import { format } from "date-fns"; 
+import { useUser } from "@/hooks/use-user";
+import { useRouter } from "next/router";
+import { format } from "date-fns";
 
 const SchedulePage = () => {
-  const { user } = useUser(); 
-  const router = useRouter(); 
+  const { user } = useUser();
+  const router = useRouter();
   const [schedule, setSchedule] = useState<any[]>([
     {
       sessionName: "Strength Training",
@@ -49,10 +49,10 @@ const SchedulePage = () => {
       trainer: "No Trainer",
       trainerPresent: false,
     },
-  ]); 
-  const [showCancelPopup, setShowCancelPopup] = useState(false); 
-  const [sessionToCancel, setSessionToCancel] = useState<any | null>(null); 
-  const [showAddSessionDialog, setShowAddSessionDialog] = useState(false); 
+  ]);
+  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [sessionToCancel, setSessionToCancel] = useState<any | null>(null);
+  const [showAddSessionDialog, setShowAddSessionDialog] = useState(false);
   const [newSession, setNewSession] = useState<any>({
     sessionName: "",
     description: "",
@@ -77,7 +77,7 @@ const SchedulePage = () => {
   const confirmCancel = () => {
     if (sessionToCancel) {
       setSchedule((prevSchedule) =>
-        prevSchedule.filter((session) => session !== sessionToCancel)
+        prevSchedule.filter((session) => session !== sessionToCancel),
       );
     }
     setShowCancelPopup(false);
@@ -118,7 +118,6 @@ const SchedulePage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-200 relative p-8">
-      
       {/* Back to Dashboard Button */}
       <button
         onClick={handleBackToDashboard}
@@ -150,8 +149,12 @@ const SchedulePage = () => {
                 key={index}
                 className="bg-gray-800 mb-6 rounded-lg p-6 shadow-lg"
               >
-                <div className="text-xl font-bold mb-2">{session.sessionName}</div>
-                <p className="text-base mb-2 text-gray-400">{session.description}</p>
+                <div className="text-xl font-bold mb-2">
+                  {session.sessionName}
+                </div>
+                <p className="text-base mb-2 text-gray-400">
+                  {session.description}
+                </p>
                 <div className="text-base text-gray-500">
                   {formatScheduleDate(session.date)}
                 </div>
@@ -186,7 +189,9 @@ const SchedulePage = () => {
       {showCancelPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-20">
           <div className="bg-gray-800 p-8 rounded-lg text-center text-white max-w-md">
-            <h3 className="text-lg font-bold mb-4">Are you sure you want to cancel this session?</h3>
+            <h3 className="text-lg font-bold mb-4">
+              Are you sure you want to cancel this session?
+            </h3>
             <p className="mb-4 text-red-500 font-semibold">
               Remember: Canceling within 24 hours will still result in a charge.
             </p>

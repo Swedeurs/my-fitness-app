@@ -19,7 +19,10 @@ export default function Navbar() {
           alignItems: "center",
         }}
       >
-        <Link href="/" style={{ fontSize: "2rem", fontWeight: "bold", color: "#00ff66" }}>
+        <Link
+          href="/"
+          style={{ fontSize: "2rem", fontWeight: "bold", color: "#00ff66" }}
+        >
           Fitness App
         </Link>
         <div style={{ display: "flex", gap: "1rem" }}>
@@ -47,8 +50,12 @@ export default function Navbar() {
                 cursor: "pointer",
                 transition: "background-color 0.3s",
               }}
-              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#4CAF50")}
-              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#00ff66")}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = "#4CAF50")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = "#00ff66")
+              }
             >
               Logout
             </button>

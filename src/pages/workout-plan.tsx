@@ -12,9 +12,7 @@ export default function WorkoutPlanPage() {
         color: "#e0e0e0",
       }}
     >
-
       <SideNav />
-
 
       <div
         style={{
@@ -24,7 +22,6 @@ export default function WorkoutPlanPage() {
           margin: "0 auto",
         }}
       >
-
         <WorkoutPlan />
         <Link href="/dashboard"></Link>
       </div>

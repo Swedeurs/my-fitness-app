@@ -32,7 +32,9 @@ const ClientDashboard = () => {
               setError("No trainer assigned to this client yet.");
               return;
             }
-            throw new Error(`Failed to fetch trainer. Status: ${response.status}`);
+            throw new Error(
+              `Failed to fetch trainer. Status: ${response.status}`,
+            );
           }
 
           const data = await response.json();
@@ -61,7 +63,9 @@ const ClientDashboard = () => {
 
         {client && (
           <div className="text-lg text-white font-bold mb-4">
-            <p className="text-2xl font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">Welcome, {client.name}!</p>
+            <p className="text-2xl font-medium text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-pointer">
+              Welcome, {client.name}!
+            </p>
             <p>Email: {client.email}</p>
           </div>
         )}
@@ -70,7 +74,9 @@ const ClientDashboard = () => {
 
         {trainer ? (
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-            <p className="text-xl font-bold text-green-400">Trainer: {trainer.name}</p>
+            <p className="text-xl font-bold text-green-400">
+              Trainer: {trainer.name}
+            </p>
             <p className="text-gray-500 mb-4">{trainer.email}</p>
             <button
               onClick={() => setShowChat(!showChat)}
@@ -90,13 +96,16 @@ const ClientDashboard = () => {
               No trainer assigned yet.
             </h2>
             <p className="text-gray-500">
-              Once a trainer is assigned, you will be able to see their information here and start chatting with them.
+              Once a trainer is assigned, you will be able to see their
+              information here and start chatting with them.
             </p>
           </div>
         )}
 
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-          <h3 className="text-2xl font-semibold mb-4 text-blue-500">Your Next Workout</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-blue-500">
+            Your Next Workout
+          </h3>
           <p className="text-gray-200">Next Workout Day: {nextWorkoutDay}</p>
           <p className="text-gray-200">Next Workout with PT: {nextSession}</p>
 

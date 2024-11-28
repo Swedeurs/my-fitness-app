@@ -2,7 +2,7 @@ import Chat from "@/app/components/chat";
 import { TrainerSideNav } from "@/app/components/trainer-sidnav";
 
 export default function ChatWithClientsPage() {
-  const otherUserId = 1; 
+  const otherUserId = 1;
 
   return (
     <div

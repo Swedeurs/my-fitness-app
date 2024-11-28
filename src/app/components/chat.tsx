@@ -91,7 +91,9 @@ export default function Chat({ otherUserId }: { otherUserId: number }) {
       {/* Message Area */}
       <div className="overflow-y-auto flex-1 mb-4 space-y-3 px-4 py-2">
         {messages.length === 0 ? (
-          <p className="text-center text-gray-400">No messages yet. Start the conversation!</p>
+          <p className="text-center text-gray-400">
+            No messages yet. Start the conversation!
+          </p>
         ) : (
           messages.map((msg, index) => (
             <div

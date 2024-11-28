@@ -49,9 +49,7 @@ const TrainerLogin = () => {
           Trainer Login
         </h1>
 
-
         {error && <p className="text-red-500 mb-4">{error}</p>}
-
 
         <div className="w-full mb-6">
           <input

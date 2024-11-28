@@ -3,7 +3,10 @@ import { eq } from "drizzle-orm";
 import { sessionsTable, trainersTable } from "@/lib/schema";
 import { db } from "@/lib/db";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { userId } = req.query;
 
   // Ensure the method is GET
@@ -27,7 +30,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Check if no session is found
     if (!session || session.length === 0) {
       console.log(`No session found for client with ID: ${userId}`);
-      return res.status(404).json({ error: "No trainer assigned to this client." });
+      return res
+        .status(404)
+        .json({ error: "No trainer assigned to this client." });
     }
 
     // Get the trainer ID from the first session (assuming only one session per client)
@@ -48,7 +53,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Return trainer details
     return res.status(200).json(trainer[0]); // Send the first trainer object
-
   } catch (error) {
     console.error("Error fetching trainer:", error);
     return res.status(500).json({ error: "Internal server error" });

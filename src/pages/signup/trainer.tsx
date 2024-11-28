@@ -47,9 +47,7 @@ export default function TrainerSignUp() {
         experienceYears: "",
       });
 
-
       router.push("/login/trainer");
-
     } catch (error) {
       console.error("Error signing up:", error);
       setError("An unexpected error occurred. Please try again.");
