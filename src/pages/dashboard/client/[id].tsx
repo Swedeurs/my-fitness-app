@@ -97,11 +97,11 @@ const ClientDashboard = () => {
 
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
           <h3 className="text-2xl font-semibold mb-4 text-blue-500">Your Next Workout</h3>
-          <p className="text-2xl font-semibold mb-4 text-blue-500">Next Workout Day: {nextWorkoutDay}</p>
+          <p className="text-gray-200">Next Workout Day: {nextWorkoutDay}</p>
           <p className="text-gray-200">Next Workout with PT: {nextSession}</p>
 
           <Link href="/schedule" passHref>
-            <button className="bg-blue-400 text-black py-3 px-6 rounded-md w-full mt-4 transition duration-300 hover:bg-blue-500">
+            <button className="bg-blue-500 text-black py-2 px-5 rounded-lg mt-8 hover:bg-blue-400 transition-colors duration-300 font-semibold w-full">
               View My Schedule
             </button>
           </Link>

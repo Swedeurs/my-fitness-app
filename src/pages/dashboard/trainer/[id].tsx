@@ -160,7 +160,7 @@ const TrainerDashboard = () => {
                           }
                         }
                       }}
-                      className="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-400"
+                      className="bg-blue-500 text-black py-2 px-4 mt-3 rounded-lg hover:bg-blue-400 transition-colors duration-300 font-semibold"
                     >
                       Assign to Me
                     </button>
