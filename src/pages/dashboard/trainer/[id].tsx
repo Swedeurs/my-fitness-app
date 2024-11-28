@@ -74,11 +74,11 @@ const TrainerDashboard = () => {
           Trainer Dashboard - {user?.name}
         </h1>
 
-        {feedback && <p className="text-green-500 mb-4">{feedback}</p>}
+        {feedback && <p className="text-blue-400 mb-4">{feedback}</p>}
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
         <div className="bg-gray-800 shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-green-500">
+          <h2 className="text-2xl font-semibold mb-4 text-blue-500">
             Assigned Clients
           </h2>
           <ul>
@@ -87,13 +87,13 @@ const TrainerDashboard = () => {
                 <li
                   key={client.id}
                   className="p-4 mb-4 border-b hover:bg-gray-700"
-                  style={{ borderBottom: "1px solid #00ff66" }}
+                  style={{ borderBottom: "1px solid #00ffcc" }}
                 >
                   <div className="flex justify-between">
                     <span className="font-medium">{client.name}</span>
                     <button
                       onClick={() => setSelectedClient(client)}
-                      className="bg-green-500 text-black py-1 px-4 rounded hover:bg-green-400"
+                      className="bg-blue-500 text-black py-1 px-4 rounded hover:bg-blue-400"
                     >
                       {selectedClient && selectedClient.id === client.id
                         ? "Close Chat"
@@ -110,7 +110,7 @@ const TrainerDashboard = () => {
         </div>
 
         <div className="bg-gray-800 shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-green-500">
+          <h2 className="text-2xl font-semibold mb-4 text-blue-500">
             Unassigned Clients
           </h2>
           <div className="grid gap-4">
@@ -118,7 +118,7 @@ const TrainerDashboard = () => {
               unassignedClients.map((client) => (
                 <div
                   key={client.id}
-                  className="p-6 border border-green-500 rounded-lg"
+                  className="p-6 border border-blue-500 rounded-lg"
                   style={{
                     backgroundColor: "#1a1a1a",
                     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -159,7 +159,7 @@ const TrainerDashboard = () => {
                           }
                         }
                       }}
-                      className="bg-green-500 text-black py-2 px-4 rounded-lg hover:bg-green-400"
+                      className="bg-blue-500 text-black py-2 px-4 rounded-lg hover:bg-blue-400"
                     >
                       Assign to Me
                     </button>
@@ -175,7 +175,7 @@ const TrainerDashboard = () => {
 
         {selectedClient && (
           <div className="mt-6 p-6 bg-gray-800 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-green-500">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-500">
               Chat with {selectedClient.name}
             </h2>
             <Chat otherUserId={selectedClient.id} />

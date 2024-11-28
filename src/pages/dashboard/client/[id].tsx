@@ -12,7 +12,6 @@ const ClientDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState<boolean>(false);
 
-
   const nextWorkoutDay = "Monday, 12th December"; 
   const nextSession = "Thursday, 15th December"; 
 
@@ -42,7 +41,7 @@ const ClientDashboard = () => {
           if (error instanceof Error) {
             setError(error.message);
           } else {
-            setError("An unexpected error occurred. Please try again later.");
+            setError("An unexpected error occurred.");
           }
         }
       };
@@ -52,144 +51,53 @@ const ClientDashboard = () => {
   }, [user]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        backgroundColor: "#0a0a0a",
-        color: "#e0e0e0",
-      }}
-    >
+    <div className="flex min-h-screen bg-black text-gray-200">
       <SideNav />
 
-      <main
-        style={{
-          flex: "1",
-          padding: "2.5rem",
-          maxWidth: "96rem",
-          margin: "0 auto",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2.25rem",
-            fontWeight: "bold",
-            marginBottom: "1.5rem",
-            color: "#00ff66",
-          }}
-        >
+      <main className="flex-1 p-10 max-w-screen-xl mx-auto">
+        <h2 className="text-4xl font-extrabold mb-8 text-green-400">
           My Client Dashboard
         </h2>
         {client && (
-          <div
-            style={{
-              fontSize: "1.25rem",
-              fontWeight: "bold",
-              marginBottom: "1rem",
-              color: "#e0e0e0",
-            }}
-          >
+          <div className="text-lg font-bold mb-4">
             <p>Welcome, {client.name}!</p>
             <p>Email: {client.email}</p>
           </div>
         )}
-        {error && (
-          <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
-        )}
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+
         {trainer ? (
-          <div
-            style={{
-              borderRadius: "0.5rem",
-              padding: "1.5rem",
-              backgroundColor: "#1a1a1a",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              marginBottom: "2.5rem",
-            }}
-          >
-            <p style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
-              Trainer: {trainer.name}
-            </p>
-            <p style={{ color: "#999999", marginBottom: "1rem" }}>
-              {trainer.email}
-            </p>
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+            <p className="text-xl font-bold text-green-400">Trainer: {trainer.name}</p>
+            <p className="text-gray-500 mb-4">{trainer.email}</p>
             <button
               onClick={() => setShowChat(!showChat)}
-              style={{
-                backgroundColor: "#00ff66",
-                color: "#ffffff",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.375rem",
-                transition: "background-color 0.3s",
-                border: "none",
-                cursor: "pointer",
-              }}
+              className="bg-green-400 text-black py-2 px-6 rounded-md transition duration-300 hover:bg-green-500"
             >
               {showChat ? "Close Chat" : "Chat with Trainer"}
             </button>
             {showChat && (
-              <div style={{ marginTop: "1.5rem" }}>
+              <div className="mt-4">
                 <Chat otherUserId={trainer.id} />
               </div>
             )}
           </div>
         ) : (
-          <div
-            style={{
-              borderRadius: "0.5rem",
-              padding: "1.5rem",
-              backgroundColor: "#1a1a1a",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              marginBottom: "2.5rem",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "1.25rem",
-                fontWeight: "bold",
-                color: "#e0e0e0",
-                marginBottom: "1rem",
-              }}
-            >
-              No trainer assigned yet.
-            </p>
-            <p style={{ color: "#999999" }}>
-              Once a trainer is assigned, you will be able to see their
-              information here and start chatting with them.
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+            <p className="text-xl font-bold text-gray-300 mb-4">No trainer assigned yet.</p>
+            <p className="text-gray-500">
+              Once a trainer is assigned, you will be able to see their information here and start chatting with them.
             </p>
           </div>
         )}
 
-        {/* Next Workout and Session Information */}
-        <div
-          style={{
-            borderRadius: "0.5rem",
-            padding: "1.5rem",
-            backgroundColor: "#1a1a1a",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            marginBottom: "2.5rem",
-          }}
-        >
-          <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#00ff66" }}>
-            Your Next Workout
-          </h3>
-          <p style={{ color: "#e0e0e0" }}>Next Workout Day: {nextWorkoutDay}</p>
-          <p style={{ color: "#e0e0e0" }}>Next Workout with PT: {nextSession}</p>
+        <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+          <h3 className="text-xl font-bold text-green-400">Your Next Workout</h3>
+          <p className="text-gray-200">Next Workout Day: {nextWorkoutDay}</p>
+          <p className="text-gray-200">Next Workout with PT: {nextSession}</p>
 
-          {/* Schedule Button */}
           <Link href="/schedule" passHref>
-            <button
-              style={{
-                backgroundColor: "#00ff66",
-                color: "#ffffff",
-                padding: "0.75rem 1.5rem",
-                borderRadius: "0.375rem",
-                border: "none",
-                cursor: "pointer",
-                marginTop: "1rem",
-                width: "100%",
-                transition: "background-color 0.3s",
-              }}
-            >
+            <button className="bg-green-400 text-white py-3 px-6 rounded-md w-full mt-4 transition duration-300 hover:bg-green-500">
               View My Schedule
             </button>
           </Link>

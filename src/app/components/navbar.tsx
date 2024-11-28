@@ -1,4 +1,3 @@
-// src/app/components/navbar.tsx
 import Link from "next/link";
 import { useUser } from "@/hooks/use-user";
 
@@ -6,19 +5,50 @@ export default function Navbar() {
   const { user, logout } = useUser();
 
   return (
-    <nav className="bg-darkCard text-primaryGreen px-6 py-4">
-      <div className="flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
+    <nav
+      style={{
+        backgroundColor: "#1a1a1a", // Dark background color (adjust as needed)
+        color: "#00ff66", // Electric blue text color
+        padding: "1rem 2rem",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Link href="/" style={{ fontSize: "2rem", fontWeight: "bold", color: "#00ff66" }}>
           Fitness App
         </Link>
-        <div className="space-x-4">
-          <Link href="/dashboard" className="hover:text-white transition">
+        <div style={{ display: "flex", gap: "1rem" }}>
+          <Link
+            href="/dashboard"
+            style={{
+              color: "#00ff66",
+              textDecoration: "none",
+              transition: "color 0.3s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "#ffffff")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "#00ff66")}
+          >
             Dashboard
           </Link>
           {user ? (
             <button
               onClick={logout}
-              className="bg-primaryGreen hover:bg-green-700 text-white px-4 py-2 rounded-md transition"
+              style={{
+                backgroundColor: "#00ff66", // Electric blue background
+                color: "#fff", // White text
+                padding: "0.5rem 1rem",
+                borderRadius: "8px",
+                border: "none",
+                cursor: "pointer",
+                transition: "background-color 0.3s",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#4CAF50")}
+              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#00ff66")}
             >
               Logout
             </button>
@@ -26,13 +56,25 @@ export default function Navbar() {
             <>
               <Link
                 href="/login/client"
-                className="hover:text-white transition"
+                style={{
+                  color: "#00ff66",
+                  textDecoration: "none",
+                  transition: "color 0.3s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "#ffffff")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "#00ff66")}
               >
                 Login as Client
               </Link>
               <Link
                 href="/login/trainer"
-                className="hover:text-white transition"
+                style={{
+                  color: "#00ff66",
+                  textDecoration: "none",
+                  transition: "color 0.3s",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "#ffffff")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "#00ff66")}
               >
                 Login as Trainer
               </Link>
