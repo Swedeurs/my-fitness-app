@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function TrainerSignUp() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,6 +46,10 @@ export default function TrainerSignUp() {
         specialization: "",
         experienceYears: "",
       });
+
+
+      router.push("/login/trainer");
+
     } catch (error) {
       console.error("Error signing up:", error);
       setError("An unexpected error occurred. Please try again.");
