@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@/hooks/use-user"; 
 import { SideNav } from "@/app/components/sidenav";
 import Chat from "@/app/components/chat";
+import Link from "next/link"; 
 import { Client, Trainer } from "@/types";
 
 const ClientDashboard = () => {
@@ -11,11 +12,14 @@ const ClientDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState<boolean>(false);
 
+
+  const nextWorkoutDay = "Monday, 12th December"; 
+  const nextSession = "Thursday, 15th December"; 
+
   useEffect(() => {
     if (user) {
       const fetchClientData = async () => {
         try {
-
           setClient({
             id: user.id,
             name: user.name,
@@ -154,6 +158,42 @@ const ClientDashboard = () => {
             </p>
           </div>
         )}
+
+        {/* Next Workout and Session Information */}
+        <div
+          style={{
+            borderRadius: "0.5rem",
+            padding: "1.5rem",
+            backgroundColor: "#1a1a1a",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            marginBottom: "2.5rem",
+          }}
+        >
+          <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#00ff66" }}>
+            Your Next Workout
+          </h3>
+          <p style={{ color: "#e0e0e0" }}>Next Workout Day: {nextWorkoutDay}</p>
+          <p style={{ color: "#e0e0e0" }}>Next Workout with PT: {nextSession}</p>
+
+          {/* Schedule Button */}
+          <Link href="/schedule" passHref>
+            <button
+              style={{
+                backgroundColor: "#00ff66",
+                color: "#ffffff",
+                padding: "0.75rem 1.5rem",
+                borderRadius: "0.375rem",
+                border: "none",
+                cursor: "pointer",
+                marginTop: "1rem",
+                width: "100%",
+                transition: "background-color 0.3s",
+              }}
+            >
+              View My Schedule
+            </button>
+          </Link>
+        </div>
       </main>
     </div>
   );
